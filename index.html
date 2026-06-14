@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>郝鹏 — 个人主页</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js">
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg-deep: #06060f;
+    --bg-card: #0c0c1d;
+    --bg-card-hover: #111128;
+    --accent: #00c6ff;
+    --accent2: #0072ff;
+    --accent-glow: rgba(0, 198, 255, 0.25);
+    --text: #e0e0e8;
+    --text-muted: #8888a0;
+    --border: #1a1a35;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', 'Source Code Pro', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── 星空粒子背景 ── */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── 导航 ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(6,6,15,0.75);
+    backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+  }
+  .nav-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #60d0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+  }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── 通用容器 ── */
+  .section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 28px;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    letter-spacing: 0.5px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 6px; height: 30px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2));
+  }
+
+  /* ── Hero / 视频区 ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 28px 60px;
+  }
+  .hero-video-wrap {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 0 80px var(--accent-glow), 0 4px 40px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+  }
+  .hero-video-wrap {
+    aspect-ratio: 16 / 9;
+  }
+  .hero-video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    border-radius: var(--radius);
+  }
+  .hero-video-label {
+    position: absolute;
+    top: 18px; left: 22px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+    border: 1px solid rgba(0,198,255,0.25);
+    pointer-events: none;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 0 32px var(--accent-glow);
+  }
+  .hero-info h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+  .hero-info .tagline {
+    color: var(--accent);
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .hero-info .brief {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+
+  /* ── 快速标签 ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .tag {
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    transition: all 0.25s;
+  }
+  .tag.highlight {
+    border-color: rgba(0,198,255,0.35);
+    color: var(--accent);
+    background: rgba(0,198,255,0.06);
+  }
+
+  /* ── 自我介绍卡片 ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .card:hover {
+    border-color: rgba(0,198,255,0.25);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .card:hover::before { opacity: 1; }
+  .card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h3 i { color: var(--accent); font-size: 1.1rem; }
+  .card p, .card li {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.75;
+  }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li { padding: 4px 0; padding-left: 18px; position: relative; }
+  .card ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 6px;
+  }
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    font-size: 0.93rem;
+    color: var(--text-muted);
+  }
+  .info-row i {
+    color: var(--accent);
+    width: 20px;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  .info-row strong { color: #ccc; min-width: 52px; }
+
+  /* ── 经历时间轴 ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 36px;
+    padding-left: 28px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -22px; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 14px var(--accent-glow);
+    border: 2px solid var(--bg-deep);
+  }
+  .timeline-period {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .timeline-role {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 4px 0;
+  }
+  .timeline-company {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .timeline-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+  .timeline-desc li {
+    list-style: none;
+    padding: 3px 0 3px 18px;
+    position: relative;
+  }
+  .timeline-desc li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 5px;
+  }
+
+  /* ── 技能 ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .skill-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.3s;
+  }
+  .skill-item:hover {
+    border-color: rgba(0,198,255,0.3);
+    background: var(--bg-card-hover);
+  }
+  .skill-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    background: rgba(0,198,255,0.08);
+    color: var(--accent);
+  }
+  .skill-info h4 { font-size: 0.95rem; font-weight: 600; color: #fff; }
+  .skill-info span { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* ── 联系方式 + 二维码 ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .qr-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    transition: all 0.35s;
+  }
+  .qr-card:hover {
+    border-color: rgba(0,198,255,0.25);
+    box-shadow: 0 0 40px var(--accent-glow);
+  }
+  .qr-card h3 {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .qr-card h3 i { color: var(--accent); }
+  #qrcode-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    display: inline-block;
+  }
+  #qrcode-wrap canvas { display: block; }
+  .qr-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px 22px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+  }
+  .contact-link:hover {
+    border-color: rgba(0,198,255,0.3);
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+  }
+  .contact-link-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: rgba(0,198,255,0.08);
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .contact-link-text strong { display: block; font-size: 0.95rem; color: #fff; }
+  .contact-link-text span { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* ── 页脚 ── */
+  .footer {
+    text-align: center;
+    padding: 40px 28px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── 响应式 ── */
+  @media (max-width: 768px) {
+    .about-grid,
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-meta { flex-direction: column; text-align: center; }
+    .hero-info h1 { font-size: 1.8rem; }
+    .section { padding: 70px 20px; }
+    .hero { padding: 80px 20px 40px; }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 星空粒子背景 -->
+<canvas id="particles"></canvas>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">&lt;HP /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#video">项目</a></li>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#experience">经历</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero + 视频 -->
+<section class="hero" id="video">
+  <div class="hero-video-wrap">
+    <span class="hero-video-label">▶ 项目演示</span>
+    <iframe
+      src="//player.bilibili.com/player.html?bvid=BV17oJc6QEfS&page=1&high_quality=1&danmaku=0"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-avatar">郝</div>
+    <div class="hero-info">
+      <h1>郝鹏</h1>
+      <p class="tagline">AI + 能源  ·  技术驱动增长</p>
+      <p class="brief">四川农业大学（211） · 能源与动力工程 · 2025届</p>
+      <div class="tags">
+        <span class="tag highlight">AI应用</span>
+        <span class="tag highlight">数据分析</span>
+        <span class="tag">Python</span>
+        <span class="tag">自动化工作流</span>
+        <span class="tag">光伏技术</span>
+        <span class="tag">短视频运营</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 自我介绍 -->
+<section class="section" id="about">
+  <h2 class="section-title">自我介绍</h2>
+  <div class="about-grid">
+    <div class="card">
+      <h3><i class="fa-solid fa-user-astronaut"></i> 关于我</h3>
+      <p>
+        我叫郝鹏，2000年出生于山西省朔州市，2025年6月毕业于四川农业大学（211）能源与动力工程专业。
+        我是一名<strong style="color:#fff;">AI技术深度应用者</strong>，善于将AI工具与实际业务场景结合，
+        从光伏数据工程到短视频商务运营，始终保持对新技术的敏锐度和快速落地的执行力。
+      </p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-bullseye"></i> 求职方向</h3>
+      <p style="font-size:1.05rem;color:#fff;margin-bottom:8px;"><strong>AI + 能源</strong></p>
+      <p>专注于将人工智能技术应用于能源领域，包括但不限于：智能运维、数据驱动的能效优化、AI辅助工程设计等方向。</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-graduation-cap"></i> 教育背景</h3>
+      <div class="info-row"><i class="fa-solid fa-school"></i><strong>院校</strong>四川农业大学（211）</div>
+      <div class="info-row"><i class="fa-solid fa-flask"></i><strong>专业</strong>能源与动力工程 · 水利水电学院</div>
+      <div class="info-row"><i class="fa-solid fa-calendar"></i><strong>学制</strong>2020.09 — 2025.06 · 本科 · 全日制</div>
+      <div style="margin-top:12px;">
+        <span class="tag">C语言</span>
+        <span class="tag">CAD制图</span>
+        <span class="tag">模拟电子学</span>
+        <span class="tag">材料学</span>
+        <span class="tag">环境学</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-palette"></i> 校园经历</h3>
+      <p style="color:#fff;font-weight:600;margin-bottom:4px;">校媒体编辑部部长 <span style="color:var(--accent);font-weight:400;font-size:0.82rem;">2021.09 — 2023.09</span></p>
+      <ul>
+        <li>负责校园学术会议采访及新闻稿撰写</li>
+        <li>在职期间发表32篇推文、8篇深度采访稿</li>
+        <li>多篇文章被中国青年报、学校共青团等知名媒体转载</li>
+        <li>荣获优秀学生干部、校团委委员等称号</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 经历 -->
+<section class="section" id="experience">
+  <h2 class="section-title">工作经历</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">2025.07 — 2025.12</div>
+      <div class="timeline-role">短视频运营 / 商务</div>
+      <div class="timeline-company">成都某文化传媒公司</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>搭建数据驱动的内容匹配体系，运用PI Agent、OpenClaw等AI工具，串联「数据抓取→匹配→智能报表」全流程自动化，优化达人签约流程</li>
+          <li>全流程负责商务谈判与签约：从达人建联、签约谈判、费率协商到合同细节，独立完成大量签约对接，善于判断客户需求并制定沟通策略</li>
+          <li>通过AI工具精准匹配500+达人，沉淀优质资源200+位，促成合作20+单，合作成功率86%</li>
+          <li>运用TavilaSearch + AI Skill深度调研甲方需求，推动事业部流水突破230万元，超额完成公司KPI指标25%</li>
+          <li>促成纯甄、华为问界、蔚来ES8、贪玩YT100等20+品牌投放合作</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2024.01 — 2024.03</div>
+      <div class="timeline-role">数据处理工程师（实习）</div>
+      <div class="timeline-company">通威太阳能科技有限公司 · 新能源</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>全流程跟进分布式光伏项目，处理12个工商业项目现场技术问题</li>
+          <li>撰写8份勘测报告，推动项目测算效率提升15%</li>
+          <li>使用PVsyst进行光伏电站模拟与发电量预测，整合选址信息生成分析报告6份</li>
+          <li>发电量预测误差控制在5%以内，为项目决策提供精准数据支持</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 技能 -->
+<section class="section" id="skills">
+  <h2 class="section-title">技能 & 证书</h2>
+  <div class="skills-grid">
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-robot"></i></div>
+      <div class="skill-info"><h4>AI工具链</h4><span>PI Agent · OpenClaw · AI Skill</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <div class="skill-info"><h4>数据分析</h4><span>Python · PVsyst · Excel</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-draw-polygon"></i></div>
+      <div class="skill-info"><h4>CAD制图</h4><span>工程图纸绘制</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-solar-panel"></i></div>
+      <div class="skill-info"><h4>光伏技术</h4><span>分布式电站 · 项目勘测</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-video"></i></div>
+      <div class="skill-info"><h4>短视频运营</h4><span>达人建联 · 商务谈判</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-language"></i></div>
+      <div class="skill-info"><h4>英语能力</h4><span>CET4 542 · 雅思 6.5</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+      <div class="skill-info"><h4>编程基础</h4><span>C语言 · 前端基础</span></div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-icon"><i class="fa-solid fa-car"></i></div>
+      <div class="skill-info"><h4>C1驾驶证</h4><span>熟练驾驶</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 联系方式 + 二维码 -->
+<section class="section" id="contact">
+  <h2 class="section-title">联系方式</h2>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:2589017155@qq.com">
+          <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-link-text">
+            <strong>电子邮箱</strong>
+            <span>2589017155@qq.com</span>
+          </div>
+        </a>
+        <a class="contact-link" href="tel:17378891971">
+          <div class="contact-link-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-link-text">
+            <strong>手机号码</strong>
+            <span>17378891971</span>
+          </div>
+        </a>
+        <a class="contact-link" href="#contact">
+          <div class="contact-link-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-link-text">
+            <strong>所在地</strong>
+            <span>山西省朔州市</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="qr-card">
+      <h3><i class="fa-solid fa-qrcode"></i> 扫码添加微信</h3>
+      <div id="qrcode-wrap"></div>
+      <p class="qr-note">微信扫一扫，即刻联系我</p>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <p>© 2025 郝鹏 · 个人主页  |  AI + 能源  ·  保持探索，持续进化</p>
+</footer>
+
+<!-- ──── 脚本 ──── -->
+<script>
+// ── 星空粒子 ──
+(function() {
+  const c = document.getElementById('particles');
+  const ctx = c.getContext('2d');
+  let stars = [];
+  let raf;
+
+  function resize() {
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const COUNT = 100;
+  for (let i = 0; i < COUNT; i++) {
+    stars.push({
+      x: Math.random() * c.width,
+      y: Math.random() * c.height,
+      r: Math.random() * 1.6 + 0.4,
+      dx: (Math.random() - 0.5) * 0.25,
+      dy: (Math.random() - 0.5) * 0.25,
+      alpha: Math.random() * 0.5 + 0.3,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    for (const s of stars) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(180,210,255,${s.alpha})`;
+      ctx.fill();
+
+      s.x += s.dx;
+      s.y += s.dy;
+
+      if (s.x < 0) s.x = c.width;
+      if (s.x > c.width) s.x = 0;
+      if (s.y < 0) s.y = c.height;
+      if (s.y > c.height) s.y = 0;
+    }
+    // 连线
+    for (let i = 0; i < stars.length; i++) {
+      for (let j = i + 1; j < stars.length; j++) {
+        const dx = stars[i].x - stars[j].x;
+        const dy = stars[i].y - stars[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(stars[i].x, stars[i].y);
+          ctx.lineTo(stars[j].x, stars[j].y);
+          ctx.strokeStyle = `rgba(100,160,220,${0.04 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.4;
+          ctx.stroke();
+        }
+      }
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── 二维码生成 ──
+(function() {
+  const wrap = document.getElementById('qrcode-wrap');
+  // 使用联系信息生成二维码
+  const vcard = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'FN:郝鹏',
+    'TEL:17378891971',
+    'EMAIL:2589017155@qq.com',
+    'ORG:四川农业大学',
+    'END:VCARD',
+  ].join('\n');
+
+  if (typeof QRCode !== 'undefined') {
+    new QRCode(wrap, {
+      text: vcard,
+      width: 180,
+      height: 180,
+      colorDark: '#0c0c1d',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M,
+    });
+  } else {
+    wrap.innerHTML = '<p style="color:#888;">二维码加载中…</p>';
+  }
+})();
+
+// ── 导航滚动高亮 ──
+(function() {
+  const sections = document.querySelectorAll('section[id], .hero[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    for (const s of sections) {
+      if (window.scrollY >= s.offsetTop - 120) {
+        current = s.getAttribute('id');
+      }
+    }
+    for (const a of navLinks) {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#fff' : '';
+    }
+  });
+})();
+</script>
+</body>
+</html>
