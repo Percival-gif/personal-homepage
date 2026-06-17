@@ -160,6 +160,11 @@
     border: 1px solid rgba(0,198,255,0.25);
     pointer-events: none;
   }
+  .hero-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
   .hero-meta {
     display: flex;
     align-items: center;
@@ -513,13 +518,31 @@
 
 <!-- Hero + 视频 -->
 <section class="hero" id="video">
-  <div class="hero-video-wrap">
-    <span class="hero-video-label">▶ 项目演示</span>
-    <iframe
-      src="//player.bilibili.com/player.html?bvid=BV17oJc6QEfS&page=1&high_quality=1&danmaku=0"
-      allowfullscreen
-      loading="lazy">
-    </iframe>
+  <div class="hero-videos">
+    <div class="hero-video-wrap">
+      <span class="hero-video-label">▶ 工作流项目视频</span>
+      <iframe
+        src="//player.bilibili.com/player.html?bvid=BV17oJc6QEfS&page=1&high_quality=1&danmaku=0"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <div class="hero-video-wrap">
+      <span class="hero-video-label">▶ 项目演示 ②</span>
+      <iframe
+        src="//player.bilibili.com/player.html?bvid=BV1g3LX66E32&page=1&high_quality=1&danmaku=0"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <div class="hero-video-wrap">
+      <span class="hero-video-label">▶ 项目演示 ③</span>
+      <iframe
+        src="//player.bilibili.com/player.html?bvid=BV1S3LX6zEjL&page=1&high_quality=1&danmaku=0"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
   </div>
   <div class="hero-meta">
     <div class="hero-avatar">郝</div>
