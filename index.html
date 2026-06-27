@@ -484,6 +484,102 @@
     z-index: 1;
   }
 
+  .project-intro {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-intro::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.6;
+  }
+  .project-intro:hover {
+    border-color: rgba(0,198,255,0.25);
+    background: var(--bg-card-hover);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .project-intro-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .project-intro-header h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .project-intro-header .project-badge {
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba(0,198,255,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(0,198,255,0.25);
+  }
+  .project-intro .project-desc {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .project-intro .project-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .project-feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 6px 0;
+  }
+  .project-feat-item i {
+    color: var(--accent);
+    font-size: 0.7rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background: var(--bg-card);
+    transition: all 0.25s;
+  }
+  .project-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,198,255,0.06);
+  }
+  .project-link i { font-size: 0.85rem; }
+
   /* ── 响应式 ── */
   @media (max-width: 768px) {
     .about-grid,
@@ -519,14 +615,73 @@
 <!-- Hero + 视频 -->
 <section class="hero" id="video">
   <div class="hero-videos">
+
+    <!-- ====== TransFloat ====== -->
+    <div class="project-intro">
+      <div class="project-intro-header">
+        <h3>TransFloat · Windows 实时翻译悬浮窗</h3>
+        <span class="project-badge">NEW</span>
+      </div>
+      <p class="project-desc">
+        一款面向编程初学者的桌面翻译工具。选中任何英文文本 → 按 <strong>Ctrl+Alt+T</strong> → 悬浮窗弹出中文翻译。
+        内置 70+ 条编程报错术语库，不仅告诉你「错误说了什么」，更让你理解「问题出在哪」。
+        永远置顶、拖拽记忆、最小化到托盘，不再掏出手机翻译报错。
+      </p>
+      <div class="project-features">
+        <div class="project-feat-item"><i class="fa-solid fa-bolt"></i> 划词即译 — 任意应用 Ctrl+Alt+T 一键翻译</div>
+        <div class="project-feat-item"><i class="fa-solid fa-brain"></i> 报错专解 — 70+ 编程术语自动识别并解释</div>
+        <div class="project-feat-item"><i class="fa-solid fa-window-restore"></i> 悬浮置顶 — 始终最上层，可拖拽，位置记忆</div>
+        <div class="project-feat-item"><i class="fa-solid fa-box"></i> 开箱即用 — 下载 EXE 双击运行，无需安装环境</div>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/Percival-gif/-" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <span class="project-link"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="project-link">PySide6</span>
+        <span class="project-link">MIT License</span>
+      </div>
+    </div>
     <div class="hero-video-wrap">
-      <span class="hero-video-label">▶ Bonnie Fridge项目视频</span>
+      <span class="hero-video-label">▶ TransFloat 项目演示</span>
+      <iframe
+        src="//player.bilibili.com/player.html?bvid=BV14r7p6sE1w&page=1&high_quality=1&danmaku=0"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <!-- ====== BonnieFridge ====== -->
+    <div class="project-intro">
+      <div class="project-intro-header">
+        <h3>Bonnie Fridge · 冰箱侦探</h3>
+        <span class="project-badge">AI</span>
+      </div>
+      <p class="project-desc">
+        拍一张冰箱照片，AI 识别食材并推荐"现在就能做的菜"。调用 Kimi K2.7 多模态模型识别食材，
+        结合用户口味偏好智能推荐菜谱，自动生成缺料购物清单。
+      </p>
+      <div class="project-features">
+        <div class="project-feat-item"><i class="fa-solid fa-camera"></i> AI 食材识别 — 拍照自动识别冰箱中的食材</div>
+        <div class="project-feat-item"><i class="fa-solid fa-microphone"></i> 语音补充 — 语音添加额外食材</div>
+        <div class="project-feat-item"><i class="fa-solid fa-utensils"></i> 智能推荐 — 基于库存推荐 3-5 道匹配度最高的菜</div>
+        <div class="project-feat-item"><i class="fa-solid fa-magnifying-glass"></i> 反向查询 — 输入菜名，AI 检查缺料</div>
+        <div class="project-feat-item"><i class="fa-solid fa-cart-shopping"></i> 购物清单 — 自动汇总缺料，一键复制</div>
+        <div class="project-feat-item"><i class="fa-solid fa-user"></i> 用户画像 — 记住口味偏好和常备食材</div>
+      </div>
+      <div class="project-links">
+        <span class="project-link"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="project-link">FastAPI</span>
+        <span class="project-link">Kimi K2.7</span>
+      </div>
+    </div>
+    <div class="hero-video-wrap">
+      <span class="hero-video-label">▶ Bonnie Fridge 项目演示</span>
       <iframe
         src="//player.bilibili.com/player.html?bvid=BV148jy6EEQ4&page=1&high_quality=1&danmaku=0"
         allowfullscreen
         loading="lazy">
       </iframe>
     </div>
+
     <div class="hero-video-wrap">
       <span class="hero-video-label">▶ 自习室项目测试视频</span>
       <iframe
