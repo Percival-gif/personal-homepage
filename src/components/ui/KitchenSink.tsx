@@ -1,0 +1,4 @@
+import { BigNumber, Burst, MoodStamp, Panel, PaperSheet, SectionTitle, Stamp, Sticker, TagChip, Tape } from './index';
+export default function KitchenSink() {
+  return <div className="page-shell"><p className="eyebrow mono">DESIGN SYSTEM / DEVELOPMENT ONLY</p><h1 className="display-en">INK & PAPER</h1><section className="page-section"><SectionTitle number="01" eyebrow="FOUNDATIONS">漫画视觉原语</SectionTitle><div className="ui-sample-grid"><Panel><Tape/><h3>纸面与硬投影</h3><p>清晰的信息，鲜明的层次。</p><Sticker>贴纸</Sticker></Panel><Panel tone="acid"><Stamp>印章</Stamp><BigNumber value="03" label="信息层级"/></Panel></div></section><section className="page-section"><SectionTitle number="02">日记原语</SectionTitle><PaperSheet><h3>今天还没有写</h3><div className="ui-sample-row"><MoodStamp mood={1}/><MoodStamp mood={2}/><MoodStamp mood={3}/><MoodStamp mood={4}/><MoodStamp mood={5}/></div><TagChip>标签</TagChip></PaperSheet><Burst>HEY!</Burst></section></div>;
+}

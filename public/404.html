@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>返回 PERCIVAL</title>
+  </head>
+  <body>
+    <p>正在返回主页。<a id="home" href="./#/">返回主页</a></p>
+    <script>
+      // Vite substitutes the deployed base path, including repository subpaths.
+      const base = __PAGES_BASE_JSON__;
+      const home = new URL(base.endsWith('/') ? base : base + '/', location.origin);
+      home.hash = '/';
+      document.getElementById('home').href = home.href;
+      location.replace(home.href);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+.now-page{overflow:clip}
+.now-hero{position:relative;padding-bottom:0;border-bottom:3px solid var(--ink)}
+.now-status{display:flex;align-items:center;gap:12px;padding:13px 17px;background:var(--ink);color:var(--paper);font-size:11px;letter-spacing:.12em;line-height:1.5}
+.now-status-dot{width:9px;height:9px;flex:none;background:var(--acid)}
+.now-status-index{margin-left:auto;font-size:9px;opacity:.7}
+.now-hero-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;padding:48px 0 42px}
+.now-question{font-size:clamp(24px,3.4vw,40px);margin-bottom:12px}
+.now-hero h1{font-size:clamp(120px,19vw,260px);letter-spacing:-.025em;line-height:.95;overflow-wrap:normal}
+.now-hero h1>span{color:var(--blue)}
+.now-hero-note{display:flex;flex-direction:column;align-items:flex-end;gap:28px;padding-bottom:4px}
+.now-hero-note>.sticker{font-size:24px;padding:9px 22px}
+.now-hero-note>.mono{max-width:26ch;font-size:10px;line-height:1.8;text-align:right}
+.now-ticker{overflow:hidden;border-top:2px solid var(--ink);padding:11px 0;white-space:nowrap;font-size:13px;font-weight:650;letter-spacing:.08em}
+.now-ticker-track{width:max-content;display:flex;align-items:center;gap:44px;animation:now-ticker 28s linear infinite}
+.now-ticker-track>span:nth-child(2n){font-size:22px;line-height:1;color:var(--blue)}
+@keyframes now-ticker{from{transform:translateX(0)}to{transform:translateX(-33.333%)}}
+.now-badge-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;padding-top:16px;align-items:stretch}
+.now-badge{position:relative;padding:38px clamp(24px,3vw,40px) 26px;display:flex;flex-direction:column;min-width:0}
+.now-badge-slot{position:absolute;left:calc(50% - 29px);top:13px;width:58px;height:7px;border:2px solid var(--ink);background:var(--paper)}
+.now-badge-top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0 24px;border-bottom:2px solid var(--ink);margin-bottom:29px}
+.now-badge-top>.mono{font-size:10px;letter-spacing:.14em}
+.now-badge-top>.stamp{font-size:11px;padding:8px 12px}
+.now-employer{font-size:18px;font-weight:700;line-height:1.6}
+.now-department{margin-top:7px!important;font-size:13px;letter-spacing:.04em}
+.now-badge h3{font-size:clamp(28px,3.1vw,44px);line-height:1.3;min-height:2.6em;margin-top:26px;max-width:11em}
+.now-job-period{font-size:12px;margin-top:22px;letter-spacing:.045em}
+.now-job-duty{border-top:2px solid var(--ink);margin-top:28px;padding-top:23px;padding-bottom:32px;flex:1}
+.now-job-duty>.eyebrow{font-size:9px;line-height:1.6;margin-bottom:14px}
+.now-job-duty>p:not(.eyebrow){font-size:17px;line-height:1.9;margin-top:0}
+.now-job-duty strong{font-weight:750;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.now-badge-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:2px solid var(--ink);padding-top:19px}
+.now-badge-foot>.mono{font-size:10px;letter-spacing:.14em}
+.now-badge-barcode{width:80px;height:22px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px,var(--ink) 5px 6px,transparent 6px 9px,var(--ink) 9px 13px,transparent 13px 15px)}
+.now-evidence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.now-evidence-card{position:relative;min-width:0;padding:28px clamp(24px,3vw,40px) 36px}
+.now-evidence-meta{display:flex;align-items:center;gap:17px;padding-bottom:22px;margin-bottom:28px;border-bottom:2px solid var(--ink)}
+.now-evidence-meta>.display-en{font-size:40px;line-height:1}
+.now-evidence-meta>.mono{font-size:9px;letter-spacing:.12em}
+.now-check{display:block;flex:none;width:35px;height:35px;margin-left:auto;color:var(--blue)}
+.now-check>svg{display:block;width:100%;height:100%}
+.now-evidence-card h3{font-size:clamp(26px,2.6vw,36px);line-height:1.35;margin-bottom:23px}
+.now-skill-body{font-size:17px;line-height:1.95;max-width:52ch}
+.now-location{position:relative;display:flex;align-items:center;justify-content:space-between;gap:30px;border-top:5px solid var(--ink);padding:42px 0 34px;flex-wrap:wrap}
+.now-location>.now-location-end{flex-basis:100%;border-top:1px solid var(--ink);padding-top:20px;margin-top:16px;font-size:10px}
+.now-location>div>.mono{font-size:10px;margin-bottom:20px;letter-spacing:.14em}
+.now-location h2{font-size:clamp(54px,8vw,112px);line-height:1.25}
+.now-location-art{width:180px;flex:none;color:var(--blue);margin-right:24px}
+@media(max-width:1023px){.now-badge-grid{gap:28px}.now-badge{padding-right:25px;padding-left:25px}.now-badge h3{font-size:31px}.now-employer{font-size:16px}.now-job-duty>p:not(.eyebrow){font-size:16px}.now-evidence-grid{gap:26px}.now-evidence-card{padding-left:24px;padding-right:24px}.now-evidence-meta{gap:12px}.now-evidence-meta>.mono{font-size:8px}.now-check{width:30px;height:30px}.now-skill-body{font-size:16px}}
+@media(max-width:639px){
+.now-status{font-size:10px;padding:12px 14px;gap:10px}.now-status-index{font-size:8px;letter-spacing:.05em}.now-hero-heading{align-items:flex-start;flex-direction:column;gap:28px;padding:36px 0 31px}.now-question{font-size:25px;margin-bottom:18px}.now-hero h1{font-size:clamp(118px,34vw,195px)}.now-hero-note{width:100%;align-items:center;flex-direction:row;justify-content:space-between;gap:20px}.now-hero-note>.sticker{font-size:19px;padding:8px 16px}.now-hero-note>.mono{font-size:8px;max-width:22ch;line-height:1.8}.now-ticker{font-size:11px;padding:9px 0}.now-ticker-track{gap:26px}.now-ticker-track>span:nth-child(2n){font-size:18px}
+.now-badge-grid{grid-template-columns:1fr;gap:40px;padding-top:8px}.now-badge{padding:35px 23px 24px}.now-badge-top{margin-bottom:25px;padding-bottom:22px}.now-badge-top>.stamp{font-size:10px}.now-employer{font-size:17px}.now-badge h3{font-size:33px;min-height:0;margin-top:24px;max-width:9em}.now-job-period{margin-top:22px;font-size:12px}.now-job-duty{padding-top:22px;padding-bottom:28px}.now-job-duty>p:not(.eyebrow){font-size:17px}.now-evidence-grid{grid-template-columns:1fr;gap:31px}.now-evidence-card{padding:25px 22px 30px}.now-evidence-card h3{font-size:29px}.now-evidence-meta{margin-bottom:24px;padding-bottom:19px}.now-evidence-meta>.mono{font-size:9px}.now-evidence-meta>.display-en{font-size:35px}.now-check{width:32px;height:32px}.now-skill-body{font-size:17px;line-height:1.9}.now-location{gap:24px;padding-top:33px}.now-location h2{font-size:64px}.now-location-art{width:94px;margin-right:0}.now-location>.now-location-end{font-size:9px;margin-top:3px}
+}
+@media(prefers-reduced-motion:reduce){.now-ticker-track{animation:none!important;transform:none!important}.now-badge-slot{transform:none}}

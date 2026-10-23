@@ -1,0 +1,16 @@
+# Implementation contract
+Read REQUIREMENTS.md in full. User confirmed Manchester = 在读博士 (人工智能), not MSc. Title fonts only Smiley Sans + Anton, body/diary system fonts. Target existing Percival-gif/personal-homepage repository, do not deploy or overwrite existing remote until integrated.
+Stages: 0 green baseline; 1 T+D+C parallel; 2 L+R+A parallel; gate build/screens/keyboard; 3 W+N+V; 4 read-only QA; 5 fix/report.
+All agents inherit current model, no override.
+Ownership: T src/styles/** src/components/ui/**; D src/data/** CONTENT_NOTES.md; C vite.config.ts tailwind.config.ts postcss.config.cjs .github/** public/404.html public/.nojekyll README.md. L src/pages/Landing/** public/logo*.svg public/favicon*; R src/pages/Corridor/** src/scenes/**; A src/pages/About/**; W Work page; N Now page; V Diary page + src/lib/diary/** src/lib/export/**. Orchestrator owns App, main, package, tsconfig, index.html, fonts, QA.
+All page modules default export. usePageTransition from ../../App returns (path:string,color?:string)=>void. Header/back belongs to App. Exactly one h1 per page. Shared classes page-shell,page-section,mono,display-en,display-zh,decor,sr-only,comic-button. UI exports from src/components/ui/index.tsx: Panel, Sticker, Stamp, Tape, PaperSheet, MoodStamp, TagChip, BigNumber, SectionTitle, Burst. Props can follow conventional children,className,tone HTML props; BigNumber value,label; SectionTitle number,eyebrow,children; MoodStamp mood?:1|2|3|4|5.
+Tokens ink,paper,acid,blue,magenta,amber,teal from requirements. 8 TOTAL doors, 4 interactive. Mobile click expand. Desktop first Enter arms second enters, focus opens. Reduced motion <=200ms opacity only.
+Content D defines profile shape, reports it promptly. No invented facts. Privacy switches default true per source, city only (no district in source). Preserve four skill paragraphs verbatim.
+Checks npm ci; npm run build; npx tsc --noEmit; npm test; npm run test:e2e. Screens 390/768/1440.
+
+Content API (D): profile fields name,gender,country,birthDate,birthYear,location{country,province,city,district?},privacy{showExactBirthDate,showDistrict},languages[{name,label}],education[{start,end,school,field,degree,period}],research{intro,topics,keywords},academic{metrics[{value,label}],summary,project{name,organization,summary,steps[{title,body}]}},industry{company,department,start,end,period,responsibilities:string[],awards[{date,title,detail?}]},currentWork[{company,department,role,start,end,period,responsibilities:string[]}],skills[{title,body}],currentYear. Additional doors{id,number,label,english,path,tone}, getBirthLabel(),getLocationLabel(),pageLabels.
+
+
+Visual revision 2026-10-24: User supplied two references and requested simple cyber linework rather than realistic corridor surfaces. Corridor now uses black SVG wireframe room, blue/magenta perspective accents, original line-art door motifs and collage stickers. Four interactive + four decorative doors remain. This supersedes corridor wall texture guidance.
+
+Layout correction 2026-10-24: user reported narrow desktop/sidebar showing cards instead of corridor. Default spatial view now begins at 640px; below 640px defaults to list. >=640px has explicit 走廊/列表 selector. data-layout controls styling independently of screen media queries.
