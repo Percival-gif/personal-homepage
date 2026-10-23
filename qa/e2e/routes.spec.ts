@@ -19,7 +19,8 @@ for (const width of [390, 768, 1440]) {
           await page.getByRole('button',{name:'开始写',exact:true}).click();
           await expect(page.getByTestId('diary-body')).toBeVisible();
         }
-        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        const layout=await page.evaluate(()=>({viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,outliers:Array.from(document.querySelectorAll('body *')).map(el=>({tag:el.tagName,id:el.id,class:typeof el.className==='string'?el.className:'',right:el.getBoundingClientRect().right,left:el.getBoundingClientRect().left})).filter(el=>el.right>innerWidth+1).slice(0,12)}));
+        expect(layout.scrollWidth,JSON.stringify(layout)).toBeLessThanOrEqual(layout.viewport);
         const a11y = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
         expect(a11y.violations).toEqual([]);
         expect(errors).toEqual([]);

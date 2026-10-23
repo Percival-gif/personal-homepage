@@ -42,8 +42,11 @@ test('autosave, reload, sealed metadata, unseal and local ZIP roundtrip',async({
   await expect(page.getByTestId('import-preview')).toBeHidden();
   await page.getByRole('button',{name:'删除这篇',exact:true}).click();
   await page.getByRole('button',{name:'确认删除',exact:true}).click();
+  await expect(page.getByRole('dialog')).toBeHidden();
   await page.getByTestId('diary-import-file').setInputFiles(backup);
+  await expect(page.getByTestId('import-preview')).toBeVisible();
   await page.getByRole('button',{name:'确认导入',exact:true}).click();
+  await expect(page.getByRole('dialog')).toBeHidden();
   await page.getByRole('button',{name:'今日',exact:true}).click();
   await expect(page.getByTestId('diary-body')).toHaveValue(bodyText);
   await expect(page.getByTestId('diary-body')).toBeDisabled();
