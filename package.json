@@ -7,6 +7,9 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
+    "preview:start": "BASE_PATH=/ npm run build && node scripts/preview-local.mjs start",
+    "preview:status": "node scripts/preview-local.mjs status",
+    "preview:stop": "node scripts/preview-local.mjs stop",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "audit": "node qa/lighthouse.mjs"

@@ -20,6 +20,18 @@ npm run build
 npm run preview
 ```
 
+需要在终端或执行会话结束后继续预览时，使用独立后台服务：
+
+```bash
+npm run preview:start
+npm run preview:status
+npm run preview:stop
+```
+
+`preview:start` 先构建最新源码，再启动固定在 4175 端口的后台预览；重复启动会复用本项目现有服务。打开 `http://127.0.0.1:4175/#/corridor` 或 `http://localhost:4175/#/corridor`，两种地址均支持。服务只监听本机 IPv4/IPv6 回环地址，不随启动命令退出；日志和进程状态保存在 `.preview-local/`。更新源码后重新执行 `preview:start` 并刷新页面。重启电脑后需再次启动。
+
+若受限执行环境提示不能终止后台进程，请在本机普通终端执行 `npm run preview:stop`；此时运行中的页面仍可访问。
+
 验证命令：
 
 ```bash
