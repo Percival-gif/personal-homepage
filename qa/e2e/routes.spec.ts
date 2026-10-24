@@ -1,6 +1,12 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { profile, getBirthLabel, getLocationLabel } from '../../src/data/profile';
 const routes = ['/', '/corridor', '/about', '/work', '/now', '/diary'];
+const visibleFacts:Record<string,string[]>={
+  '/about':[profile.name,profile.gender,profile.country,getBirthLabel(),getLocationLabel(),...profile.languages.flatMap(x=>[x.name,x.label]),...profile.education.flatMap(x=>[x.period,x.school,x.field,x.degree]),profile.research.intro,...profile.research.topics],
+  '/work':[profile.academic.summary,profile.academic.project.name,profile.academic.project.organization,profile.academic.project.summary,...profile.academic.project.steps.map(x=>x.body),profile.industry.company,profile.industry.department,profile.industry.period,...profile.industry.responsibilities,...profile.industry.awards.flatMap(x=>[x.date,x.title,...(x.detail?[x.detail]:[])])],
+  '/now':[...profile.currentWork.flatMap(x=>[x.company,x.department,x.role,x.period,...x.responsibilities]),...profile.skills.flatMap(x=>[x.title,x.body])],
+};
 for (const width of [390, 768, 1440]) {
   test.describe(`${width}px`, () => {
     test.use({ viewport: { width, height: 1000 }, reducedMotion: 'reduce' });
@@ -19,8 +25,9 @@ for (const width of [390, 768, 1440]) {
           await page.getByRole('button',{name:'开始写',exact:true}).click();
           await expect(page.getByTestId('diary-body')).toBeVisible();
         }
-        const layout=await page.evaluate(()=>({viewport:innerWidth,scrollWidth:document.documentElement.scrollWidth,outliers:Array.from(document.querySelectorAll('body *')).map(el=>({tag:el.tagName,id:el.id,class:typeof el.className==='string'?el.className:'',right:el.getBoundingClientRect().right,left:el.getBoundingClientRect().left})).filter(el=>el.right>innerWidth+1).slice(0,12)}));
-        expect(layout.scrollWidth,JSON.stringify(layout)).toBeLessThanOrEqual(layout.viewport);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+        const renderedText=(await page.locator('main').innerText()).replace(/\s/g,'');
+        for(const fact of visibleFacts[route]??[])expect(renderedText,`Missing visible source content: ${fact}`).toContain(fact.replace(/\s/g,''));
         const a11y = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
         expect(a11y.violations).toEqual([]);
         expect(errors).toEqual([]);

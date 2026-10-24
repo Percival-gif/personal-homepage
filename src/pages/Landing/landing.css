@@ -28,3 +28,23 @@
 @media(max-width:767px){.landing{padding:22px 24px 24px;min-height:100svh}.landing-coordinate{display:none}.landing-topline{font-size:8px;gap:10px}.landing-skip{top:70px;right:24px;font-size:11px}.landing-center{margin:145px auto 120px}.landing-kicker .mono{font-size:8px;letter-spacing:.1em}.landing-kicker{padding-bottom:22px}.landing-small-star{font-size:22px}.landing-wordmark{padding-right:0}.landing-wordmark img{max-height:none;min-height:92px}.landing-logo-star{right:-2%;top:-39%;width:17%}.landing-afterword{grid-template-columns:1fr;gap:30px;margin-top:20px}.landing-welcome{grid-row:1;font-size:47px}.landing-afterword .sticker{justify-self:center;font-size:11px}.landing-side-note{display:none}.landing-footer{grid-template-columns:1fr;gap:20px;padding-top:22px}.landing-enter{grid-row:1;width:100%;padding:14px 18px}.landing-footer-code{font-size:8px;text-align:center}.landing-footer-code br{display:none}.landing-footer-number{display:none}}
 @media(max-width:767px) and (max-height:760px){.landing-center{margin-top:110px;margin-bottom:65px}.landing-afterword{gap:22px}.landing-wordmark img{min-height:80px}}
 @media(prefers-reduced-motion:reduce){.landing-logo-star{transform:none}.landing-enter .mono{animation:none}}
+
+/* Screen-printed sheets, marker circles and torn tickets around one clear wordmark. */
+.landing-collage{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.landing-blue-cutout{position:absolute;left:-4%;top:24%;width:59%;height:23%;background:var(--blue);transform:rotate(-8deg);clip-path:polygon(0 3%,97% 0,100% 10%,98% 23%,100% 42%,97% 58%,99% 80%,96% 100%,0 96%)}
+.landing-magenta-orbit{position:absolute;right:-5%;top:16%;width:40vw;height:40vw;max-width:600px;max-height:600px;border:19px solid var(--magenta);border-radius:50%;transform:rotate(-16deg) scaleY(.62)}
+.landing-acid-checker{position:absolute;left:3%;bottom:15%;width:120px;height:65px;background:conic-gradient(var(--acid) 25%,var(--ink) 0 50%,var(--acid) 0 75%,var(--ink) 0) 0 0/26px 26px;transform:rotate(-9deg)}
+.landing-poster-tag{position:absolute;right:3%;top:13%;font-size:clamp(24px,3vw,44px);line-height:1.05;padding:15px 22px;background:var(--magenta);color:var(--ink);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--paper);transform:rotate(8deg)}
+.landing-drawn-arrow{position:absolute;right:3%;bottom:14%;width:150px;color:var(--acid);transform:rotate(15deg)}
+.landing-center{position:relative;z-index:1;margin-bottom:70px}
+.landing-logo-star{color:var(--magenta);filter:none}
+.landing-welcome{color:var(--acid)}
+.landing-afterword .sticker{background:var(--paper);color:var(--ink);box-shadow:5px 5px 0 var(--magenta);border-color:var(--ink)}
+.landing-profile-strip{display:flex;align-items:center;gap:20px;max-width:1000px;margin:52px auto 0;padding:14px 20px;background:var(--paper);color:var(--ink);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--blue);transform:rotate(-1deg)}
+.landing-profile-strip>.mono{font-size:8px;line-height:1.8;min-width:74px;border-right:1px solid var(--ink);padding-right:16px}
+.landing-profile-strip>p{font-size:12px;line-height:1.8;margin:0}
+.landing-strip-cross{font-size:34px;line-height:1;color:var(--blue);flex:none}
+.landing-footer{position:relative;z-index:1}
+[data-decor=off] .landing-profile-strip{transform:none;box-shadow:none}
+@media(max-width:767px){.landing-blue-cutout{top:26%;width:84%;height:15%}.landing-magenta-orbit{width:85vw;height:85vw;top:23%;right:-40%;border-width:12px}.landing-poster-tag{top:14%;right:8%;font-size:24px;padding:11px 15px}.landing-acid-checker{width:72px;height:40px;bottom:25%;left:3%}.landing-drawn-arrow{display:none}.landing-center{margin-top:125px;margin-bottom:48px}.landing-profile-strip{margin-top:38px;display:grid;grid-template-columns:1fr;gap:10px;padding:15px;box-shadow:5px 5px 0 var(--blue)}.landing-profile-strip>.mono{border-right:0;border-bottom:1px solid var(--ink);padding:0 0 7px}.landing-profile-strip>p{font-size:11px}.landing-strip-cross{display:none}.landing-afterword{gap:28px}.landing-logo-star{right:0;top:-40%}}
+@media(prefers-reduced-motion:reduce){.landing-profile-strip,.landing-blue-cutout,.landing-magenta-orbit,.landing-poster-tag,.landing-acid-checker{transform:none}}

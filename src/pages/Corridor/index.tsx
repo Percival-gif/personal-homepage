@@ -5,6 +5,7 @@ import { doors, profile } from '../../data/profile';
 import type { Door } from '../../data/profile';
 import { usePageTransition } from '../../App';
 import './corridor.css';
+import { ArchiveIndex } from '../../components/ArchiveNavigation';
 
 function RoomDrawing() {
   return <svg className="corridor-room decor" viewBox="0 0 1440 750" preserveAspectRatio="none" aria-hidden="true">
@@ -76,5 +77,6 @@ export default function Corridor() {
       <div className="corridor-coordinate decor mono" aria-hidden="true"><span>〔</span> + <span>〕</span></div>
     </div>
     <footer className="corridor-footer mono"><span>{profile.location.city} · {profile.currentYear}</span><span>FOUR DOORS. ONE PERSON.</span><span aria-hidden="true">SCROLL THROUGH THE STORIES ↗</span></footer>
+    <ArchiveIndex dark/>
   </section>;
 }
