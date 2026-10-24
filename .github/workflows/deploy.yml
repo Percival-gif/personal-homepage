@@ -17,21 +17,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pages: write
+      pages: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: npm
-      - name: Use Actions as the Pages source
+      - name: Confirm Actions is the Pages source
         uses: actions/github-script@v7
         with:
           script: |
             const { owner, repo } = context.repo;
             const { data } = await github.request('GET /repos/{owner}/{repo}/pages', { owner, repo });
             if (data.build_type !== 'workflow') {
-              await github.request('PUT /repos/{owner}/{repo}/pages', { owner, repo, build_type: 'workflow' });
+              core.setFailed('Set Settings > Pages > Source to GitHub Actions, then run this workflow again.');
             }
       - name: Read Pages configuration
         id: pages
