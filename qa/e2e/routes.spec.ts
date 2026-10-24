@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { profile, getBirthLabel, getLocationLabel } from '../../src/data/profile';
-const routes = ['/', '/corridor', '/about', '/work', '/now', '/diary'];
+const routes = ['/', '/corridor', '/about', '/work', '/now', '/projects', '/projects/after-you', '/notes', '/notes/research-and-evidence', '/diary'];
 const visibleFacts:Record<string,string[]>={
   '/about':[profile.name,profile.gender,profile.country,getBirthLabel(),getLocationLabel(),profile.introduction.title,...profile.introduction.paragraphs,...profile.languages.flatMap(x=>[x.name,x.label]),...profile.education.flatMap(x=>[x.period,x.school,x.field,x.degree]),profile.research.intro,...profile.research.topics,...profile.research.overview,...profile.research.areas.flatMap(x=>[x.title,x.body])],
   '/work':[profile.academic.summary,profile.academic.perspective,profile.academic.conference.title,...profile.academic.conference.paragraphs,profile.academic.project.name,profile.academic.project.organization,profile.academic.project.summary,profile.academic.project.perspective,...profile.academic.project.steps.flatMap(x=>[x.title,x.body]),profile.industry.company,profile.industry.department,profile.industry.period,...profile.industry.responsibilities,...[...profile.industry.awards,...profile.academic.project.awards].flatMap(x=>[...(x.date?[x.date]:[]),x.title,x.status,x.detail])],
@@ -80,4 +80,24 @@ test('keyboard door entry, Escape and browser history', async ({ page }) => {
   await expect(page).toHaveURL(/#\/about$/);
   await page.goForward();
   await expect(page).toHaveURL(/#\/corridor$/);
+});
+
+
+test('public notes and the local notebook remain separate', async ({ page }) => {
+  await page.goto('/#/notes');
+  await expect(page.getByRole('heading', { name: '研究与实践摘记' })).toBeVisible();
+  await expect(page.locator('.note-entry')).toHaveCount(3);
+  await expect(page.locator('textarea')).toHaveCount(0);
+  await expect(page.locator('.archive-navigation-links a[href="#/notes"]')).toHaveAttribute('href', '#/notes');
+  await page.locator('.note-entry').first().click();
+  await expect(page).toHaveURL(/#\/notes\/research-and-evidence$/);
+  await expect(page.locator('.note-prose')).toContainText(profile.research.overview[1]);
+  await expect(page.locator('.archive-navigation-links a[href="#/notes"]')).toHaveAttribute('aria-current', 'page');
+  await page.reload();
+  await expect(page.locator('h1')).toHaveText('理解模型，也理解结论的边界。');
+  await page.goto('/#/diary');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('私人笔记本。');
+  await expect(page.getByText('这里是本地书写空间，内容不会成为公开文章。')).toBeVisible();
+  await page.getByRole('link', { name: '阅读公开随笔 ↗' }).click();
+  await expect(page).toHaveURL(/#\/notes$/);
 });

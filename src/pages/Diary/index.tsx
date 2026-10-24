@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import type { ChangeEvent, ReactNode } from 'react';
 import { MoodStamp, PaperSheet, Stamp, TagChip, Tape } from '../../components/ui';
 import { diaryStore, previewImport } from '../../lib/diary/store';
@@ -117,7 +118,8 @@ export default function Diary() {
   const moveMonth = (by: number) => { const date = new Date(`${month}-01T12:00:00`); date.setMonth(date.getMonth()+by); setMonth(localDate(date).slice(0,7)); };
   const sealed = draft.sealed;
   return <section className="diary-page" data-testid="diary-ready" data-diary-ready={ready && acknowledged ? 'true' : 'false'}>
-    <div className="diary-heading"><div><p className="mono">ROOM D / A PAGE OF YOUR OWN</p><h1 className="display-zh">我今天<br className="diary-title-break"/>想说什么？</h1></div><span className="diary-heading-mark decor display-en" aria-hidden="true">D.</span></div>
+    <div className="diary-heading"><div><p className="mono">PRIVATE NOTEBOOK / LOCAL ONLY</p><h1 className="display-zh">私人<br className="diary-title-break"/>笔记本。</h1></div><span className="diary-heading-mark decor display-en" aria-hidden="true">P.</span></div>
+    <p className="diary-public-separation">这里是本地书写空间，内容不会成为公开文章。<Link to="/notes">阅读公开随笔 ↗</Link></p>
     {error && <p className="diary-error" role="alert">{error}</p>}
     {!ready ? <PaperSheet><p role="status">正在打开本地笔记本…</p>{error && <button className="comic-button" onClick={() => location.reload()}>重新打开</button>}</PaperSheet> : !acknowledged ? <PaperSheet className="diary-disclosure"><Tape/><p className="mono">BEFORE YOU WRITE</p><h2 className="display-zh">这本日记，留在这里。</h2><p>日记仅保存在当前浏览器。清理站点数据、使用无痕模式或更换设备都可能使记录丢失，请定期导出备份。</p><p>每位访客写下的内容都属于各自的浏览器，没有登录、云同步或公开列表。共用同一浏览器的人能够读取这些记录。</p><button type="button" className="comic-button primary" onClick={() => { void acceptDisclosure(); }}>我明白了，开始写</button></PaperSheet> : <>
       <nav className="diary-toolbar" aria-label="日记视图与备份"><div className="diary-view-tabs">{([{id:'editor',label:'今日'},{id:'calendar',label:'日历'},{id:'list',label:'全部'}] as const).map(tab => <button type="button" aria-pressed={view===tab.id} key={tab.id} onClick={() => { if (tab.id==='editor') void chooseDate(localDate()); else void switchView(tab.id); }}>{tab.label}</button>)}</div><div className="diary-backup-actions"><button className="comic-button" onClick={() => { void exportAll(); }}>导出全部 ZIP</button><button className="comic-button" onClick={() => fileRef.current?.click()}>导入备份</button><input ref={fileRef} data-testid="diary-import-file" hidden type="file" accept=".md,.zip" aria-label="选择日记备份" onChange={event => { void importFile(event); }}/></div></nav>

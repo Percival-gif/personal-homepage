@@ -30,3 +30,41 @@
 @media(max-width:767px){.work-hero-bottom{display:grid;grid-template-columns:minmax(0,1fr) 96px;gap:18px 12px;padding-left:0}.work-hero-bottom>.display-en{font-size:clamp(72px,24vw,180px)}.work-hero-doodle{width:96px}.work-hero-ticket{grid-column:1/-1;min-width:0;width:100%;margin:4px 0 0 3px;grid-template-columns:1fr auto;align-items:center;transform:rotate(1deg)}.work-hero-ticket>.mono:last-child{grid-column:1/-1}}
 @media(max-width:639px){.work-case-heading{flex-wrap:nowrap}.work-case-doodle{width:100px}}
 @media(max-width:359px){.work-hero-bottom{grid-template-columns:minmax(0,1fr) 72px}.work-hero-doodle{width:72px}}
+
+/* Room B: experimental plates, registration marks and a quiet reading grid. */
+.work-hero{isolation:isolate;padding-bottom:28px}
+.work-blueprint{position:absolute;inset:40px 0 45px;width:100%;height:calc(100% - 85px);color:var(--paper);stroke:currentColor;stroke-width:1;opacity:.22;z-index:-1;pointer-events:none}
+.work-hero-meta{background:var(--blue);width:fit-content;min-width:58%;padding:0 16px 14px 0}
+.work-hero h1>span{box-shadow:none;transform:none;border-width:0 0 7px;border-color:var(--acid);padding-left:0;padding-right:10px;background:var(--blue);color:var(--paper)}
+.work-hero-bottom>.display-en{text-shadow:4px 4px 0 var(--ink);font-size:clamp(95px,18vw,250px)}
+.work-exhibition-caption{display:flex;justify-content:space-between;gap:18px;padding-top:28px;font-size:10px;line-height:1.8}
+.work-exhibition-caption>span{background:var(--blue);padding-right:12px}
+.work-hero-ticket{transform:none;box-shadow:none}
+.work-contents>a{box-shadow:none;border:0;border-bottom:2px solid var(--paper);color:var(--paper);background:transparent!important;padding-left:0;transform:none!important}
+.work-contents>a:hover{color:var(--acid)}
+.work-results-note,.work-conference{box-shadow:none}
+.work-case-panels{gap:0;counter-reset:figure;background:var(--paper);border:3px solid var(--ink)}
+.work-case-panels>li{padding:25px 23px 32px;box-shadow:none;border:0;border-bottom:1px solid var(--ink);background:var(--paper)!important;color:var(--ink)!important;min-height:0;margin:0!important}
+.work-case-panels>li:nth-child(even){border-right:1px solid var(--ink)}
+.work-case-panels>li:last-child{border-bottom:0}
+.work-frame-top{position:relative;align-items:flex-start;min-height:76px;padding-bottom:10px;border:0}
+.work-figure-number{margin-left:auto;font-size:76px;line-height:1;color:var(--blue);letter-spacing:-.05em}
+.work-frame-arrow{display:none}
+.work-case-panels h4{padding-top:16px;border-top:2px solid var(--ink)}
+.work-employment{transform:none;box-shadow:none}
+.work-award{transform:none;box-shadow:none;border-width:1px 1px 1px 7px}
+.work-award-2{margin-left:0}
+.work-award[data-award-status='提名']{border-left-width:7px}
+@media(max-width:1023px){
+ .work-case-panels{grid-template-columns:repeat(2,minmax(0,1fr))}.work-case-panels>li:first-child,.work-case-panels>li:last-child{grid-column:1/-1}
+ .work-figure-number{font-size:80px}.work-hero-meta{min-width:70%}
+}
+@media(max-width:767px){
+ .work-hero-bottom>.display-en{font-size:clamp(72px,24vw,180px)}
+ .work-exhibition-caption{flex-direction:column;gap:5px;font-size:8px}.work-blueprint{stroke-width:1.5;opacity:.27}
+ .work-hero-meta{width:100%;padding-right:0}.work-hero h1>span{padding:8px 0 12px}
+}
+@media(max-width:639px){
+ .work-case-panels{grid-template-columns:1fr}.work-case-panels>li,.work-case-panels>li:first-child,.work-case-panels>li:last-child{grid-column:1;border-right:0;padding:24px 22px 30px}
+ .work-frame-top{min-height:70px}.work-figure-number{font-size:70px}.work-contents>a{padding:12px 0}
+}

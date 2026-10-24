@@ -2,9 +2,10 @@ import {useCallback, useEffect, useLayoutEffect, useRef} from 'react';
 import gsap from 'gsap';
 import {usePageTransition} from '../../App';
 import {profile} from '../../data/profile';
-import {Sticker} from '../../components/ui';
+import {Link} from 'react-router-dom';
 import './landing.css';
 import { ArchiveIndex } from '../../components/ArchiveNavigation';
+import { FeaturedProjects } from '../Projects';
 import { Graffiti } from '../../components/Graffiti';
 
 export default function Landing(){
@@ -41,7 +42,7 @@ export default function Landing(){
   },[]);
   useEffect(()=>{
     const handler=(event:KeyboardEvent)=>{
-      if(event.target instanceof Element && event.target.closest('a, input, textarea, select'))return;
+      if(event.target instanceof Element && event.target.closest('a, button, input, textarea, select'))return;
       if(event.defaultPrevented||event.ctrlKey||event.metaKey||event.altKey||['Tab','Shift','Control','Alt','Meta','Escape','CapsLock'].includes(event.key))return;
       event.preventDefault();enter();
     };
@@ -50,15 +51,22 @@ export default function Landing(){
   },[enter]);
   return <><section className="landing" ref={root} aria-label="PERCIVAL 起始页">
     <div className="landing-grain decor" aria-hidden="true"/>
-    <div className="landing-collage decor" aria-hidden="true"><span className="landing-blue-cutout"/><span className="landing-magenta-orbit"/><span className="landing-acid-checker"/><Graffiti variant="orbit" className="landing-graffiti" eager/><svg className="landing-drawn-arrow" viewBox="0 0 200 120" fill="none"><path d="M10 100C66 2 135 10 180 66m-40-2 42 5-11-39" stroke="currentColor" strokeWidth="5"/></svg></div>
+    <div className="landing-collage decor" aria-hidden="true"><span className="landing-blue-cutout"/><span className="landing-acid-checker"/><span className="landing-registration">＋</span></div>
     <header className="landing-topline mono"><span>PERSONAL ARCHIVE</span><span>{profile.location.city} / {profile.currentYear}</span><span className="landing-coordinate">INDEX — 00</span></header>
     <button type="button" className="landing-skip" onClick={enter}>跳过动画 ↗</button>
     <div className="landing-center">
-      <div className="landing-kicker"><span className="mono">A FEW DOORS. A PERSONAL WORLD.</span><span className="landing-small-star decor" aria-hidden="true">✳</span></div>
-      <h1 className="landing-wordmark landing-reveal"><span className="sr-only">{profile.name}</span><img src={`${import.meta.env.BASE_URL}logo.svg`} alt="" width="880" height="205" aria-hidden="true"/><svg className="landing-logo-star decor" viewBox="0 0 100 100" aria-hidden="true"><path d="m50 2 8 28 24-16-10 28 26 8-28 9 16 24-28-11-8 27-9-28-25 16 12-28L2 50l28-8-16-25 28 11z" fill="currentColor"/></svg></h1>
-      <div className="landing-afterword"><Sticker tone="paper" rotate={-3}>{profile.introduction.title}</Sticker><p className="landing-welcome landing-reveal display-zh"><span className="sr-only">Welcome</span>{'Welcome'.split('').map((char,index)=><span aria-hidden="true" key={index}>{char}</span>)}<span className="landing-welcome-dot" aria-hidden="true">.</span></p><span className="landing-side-note mono">NLP / LLM</span></div>
-      <div className="landing-profile-strip"><span className="mono">CURRENT FILE ↗</span><p>{profile.education.at(-1)?.school} · {profile.education.at(-1)?.field} · {profile.education.at(-1)?.degree}</p><span className="landing-strip-cross decor" aria-hidden="true">✳</span><p>{profile.currentWork.at(-1)?.company} · {profile.currentWork.at(-1)?.role}</p></div>
+      <div className="landing-kicker"><span className="mono">RESEARCH / PRACTICE / PERSONAL WORLD</span><span className="mono">VOL. 00 — OPEN EDITION</span></div>
+      <div className="landing-wordmark-stage">
+        <h1 className="landing-wordmark landing-reveal"><span className="sr-only">{profile.name}</span><img src={`${import.meta.env.BASE_URL}logo.svg`} alt="" width="880" height="205" aria-hidden="true"/></h1>
+        <svg className="landing-orbit decor" viewBox="0 0 1200 350" fill="none" aria-hidden="true"><path d="M-60 320C130 360 1080-70 1250 20M-30 300C180 340 1060-40 1230 40" stroke="currentColor" strokeWidth="2"/><path d="m1040 49 15-28 5 25 27 5-27 10-8 28-8-25-27-5Z" fill="var(--acid)" stroke="var(--ink)" strokeWidth="3"/></svg>
+        <span className="landing-edition mono decor" aria-hidden="true">FIG. 01 / A WORK IN PROGRESS</span>
+      </div>
+      <div className="landing-afterword">
+        <div className="landing-statement"><p className="landing-role mono">人工智能研究与工程实践 · NLP / LLM</p><h2 className="display-zh">从模型原理，<br/>到工程现场。</h2><p className="landing-position">关注大语言模型训练、可靠性与真实场景部署。</p></div>
+        <div className="landing-art-note"><Graffiti variant="orbit" className="landing-graffiti" eager/><p className="landing-welcome landing-reveal display-en"><span className="sr-only">Welcome</span>{'Welcome'.split('').map((char,index)=><span aria-hidden="true" key={index}>{char}</span>)}<span className="landing-welcome-dot" aria-hidden="true">.</span></p><span className="mono">A FEW DOORS.<br/>A PERSONAL WORLD.</span></div>
+      </div>
+      <div className="landing-profile-strip"><span className="mono">CURRENT FILE ↗</span><p>{profile.education.at(-1)?.school} · {profile.education.at(-1)?.field} · {profile.education.at(-1)?.degree}</p><span className="landing-strip-cross decor" aria-hidden="true">/</span><p>{profile.currentWork.at(-1)?.company} · {profile.currentWork.at(-1)?.role}</p></div>
     </div>
-    <footer className="landing-footer"><span className="landing-footer-code mono">PERCIVAL<br/>OPEN THE ARCHIVE ↗</span><button className="landing-enter landing-reveal" onClick={enter} type="button"><span><span className="mono">PRESS ANY KEY TO ENTER</span><strong className="display-zh">进入走廊</strong></span><svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M10 26h31M29 13l13 13-13 13" stroke="currentColor" strokeWidth="3"/></svg></button><span className="landing-footer-number display-en decor" aria-hidden="true">00</span></footer>
-  </section><ArchiveIndex/></>;
+    <footer className="landing-footer"><nav className="landing-direct" aria-label="直接浏览"><Link to="/projects"><span className="mono">01 / CREATIONS</span>创作展厅 ↗</Link><Link to="/notes"><span className="mono">02 / NOTES</span>公开随笔 ↗</Link></nav><button className="landing-enter landing-reveal" onClick={enter} type="button"><span><span className="mono">PRESS ANY KEY TO ENTER</span><strong className="display-zh">进入走廊</strong></span><svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M10 26h31M29 13l13 13-13 13" stroke="currentColor" strokeWidth="3"/></svg></button></footer>
+  </section><FeaturedProjects/><ArchiveIndex/></>;
 }

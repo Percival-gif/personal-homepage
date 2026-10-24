@@ -26,6 +26,9 @@ function RoomDrawing() {
       <g className="room-accent-right"><path d="M1440 740 790 428V283L1328 52M1268 62H1110M1038 171H922M893 235H831"/></g>
       <g className="room-light"><path d="M574 18H866M631 121H809M671 194H769M692 241H748"/><path d="M655 702l65-36 65 36m-52-18v50"/></g>
       <g className="room-register"><path d="M698 319h12m20 0h12m-44 35h12m20 0h12M720 310v10m0 33v10"/></g>
+      <g className="room-near-frame"><path d="M3 3h110v30H33v110M1437 3h-110v30h80v110M3 747h110v-30H33v-110m1404 140h-110v-30h80v-110"/></g>
+      <g className="room-wall-notations"><path d="m220 129 180 81v25l-180-73Zm1020 0-180 81v25l180-73ZM245 545l145-62m-145 83 145-62m705 41-145-62m145 83-145-62"/><path d="m291 139 16-24 21 38m788-14-16-24-21 38M470 350l47-15 31 18-47 16Zm452 0 47-15 31 18-47 16Z"/></g>
+      <g className="room-floor-route"><path d="M559 750 699 452h42l140 298M633 614h174M661 554h118"/></g>
     </g>
   </svg>;
 }
@@ -60,19 +63,21 @@ export default function Corridor() {
     else { setArmed(door.id); setOpen(door.id); }
   };
   const toggleDecor = () => { document.documentElement.dataset.decor = decor ? 'off' : 'on'; setDecor(!decor); };
-  return <section className="corridor-page" data-layout={compact ? 'list' : 'space'} aria-labelledby="corridor-title">
+  return <section className="corridor-page" data-layout={compact ? 'list' : 'space'} data-active-room={open ?? ''} aria-labelledby="corridor-title">
     <header className="corridor-masthead"><Link className="corridor-home display-en" to="/" aria-label="回到起始页">{profile.name.toUpperCase()}<span className="mono">PERSONAL<br/>ARCHIVE</span></Link><span className="corridor-system mono" aria-hidden="true">〔 EXPLORE / 01—04 〕</span><div className="corridor-tools"><div className="corridor-view-switch mono" role="group" aria-label="走廊显示方式"><button type="button" aria-pressed={!compact} onClick={() => changeLayout(false)}>走廊</button><button type="button" aria-pressed={compact} onClick={() => changeLayout(true)}>列表</button></div><button type="button" className="corridor-decor-button mono" aria-pressed={!decor} onClick={toggleDecor}>{decor ? '装饰 ON' : '装饰 OFF'}</button></div></header>
-    <div className="corridor-intro"><div><p className="mono">PICK A DOOR. STEP INTO A STORY.</p><h1 className="display-zh" id="corridor-title">选一扇<span>门。</span><svg className="corridor-title-mark decor" viewBox="0 0 100 60" aria-hidden="true"><path d="m5 28 15 21 23-40 10 36 32-31-6 34M12 55l77-7" fill="none" stroke="currentColor" strokeWidth="5"/></svg></h1></div><p className="corridor-instructions">{compact ? '点开门卡，看看门后。' : '悬停开门，点击进入。'}<span className="mono">{compact ? 'TAP TO OPEN / TAP TO ENTER' : 'TAB → ENTER → ENTER'}</span></p></div>
+    <div className="corridor-intro"><div><p className="mono">EXHIBITION INDEX / PICK A DOOR.</p><h1 className="display-zh" id="corridor-title">选一扇<span>门。</span><svg className="corridor-title-mark decor" viewBox="0 0 100 60" aria-hidden="true"><path d="m5 28 15 21 23-40 10 36 32-31-6 34M12 55l77-7" fill="none" stroke="currentColor" strokeWidth="5"/></svg></h1></div><p className="corridor-instructions">{compact ? '四间展厅，四种观看方式。' : '沿着线条，进入我的世界。'}<span className="mono">{compact ? 'TAP TO OPEN / TAP TO ENTER' : 'TAB → ENTER → ENTER'}</span></p></div>
     <div className="corridor-scene" aria-label="四扇可进入的门与四扇远处装饰门">
       <RoomDrawing/>
-      <div className="corridor-neon decor mono" aria-hidden="true"><span>KEEP</span><strong className="display-en">CURIOUS.</strong><span>↗</span></div>
+      <div className="corridor-wall-type corridor-wall-type-left decor display-en" aria-hidden="true">OPEN</div>
+      <div className="corridor-wall-type corridor-wall-type-right decor display-en" aria-hidden="true">MIND</div>
+      <div className="corridor-neon decor mono" aria-hidden="true"><span>KEEP</span><strong className="display-en">CURIOUS.</strong><svg className="corridor-end-emblem" viewBox="0 0 80 80"><path d="m40 5 7 23 23-8-14 20 19 15-25-1-10 22-8-23-26 3 19-17-13-20 22 9Z" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="40" cy="40" r="8" fill="currentColor"/></svg><span className="corridor-end-code">P / 00</span></div>
       {doors.map(door => <article key={door.id} className={`corridor-door corridor-door-${door.id}${open === door.id ? ' is-open' : ''}`} style={{ '--door-color': `var(--${door.tone})` } as CSSProperties}>
         <button className="corridor-door-button" type="button" aria-expanded={open === door.id} aria-controls={`inside-${door.id}`} aria-label={`${door.number} ${door.label}`} onMouseEnter={() => { if (!compact) setOpen(door.id); }} onMouseLeave={() => { if (!compact && document.activeElement?.id !== `door-${door.id}`) setOpen(undefined); }} onFocus={() => { if (!compact) setOpen(door.id); }} onBlur={() => { setArmed(undefined); if (!compact) setOpen(undefined); }} onKeyDown={event => handleKey(event, door)} onClick={() => { if (compact) setOpen(open === door.id ? undefined : door.id); else enter(door); }} id={`door-${door.id}`}>
           <span className="corridor-door-reveal" aria-hidden="true"><span className="corridor-door-arrow">↗</span><span className="mono">{door.english}</span></span>
           <span className="corridor-door-panel"><span className="corridor-door-topline mono"><span>ROOM / {door.id}</span><span>↗</span></span><span className="corridor-door-number display-en">{door.number}</span>{door.id === 'D' ? <DoorDrawing id={door.id}/> : <Graffiti variant={door.id === 'A' ? 'neural' : door.id === 'B' ? 'terminal' : 'orbit'} className="corridor-generated-art" eager/>}<span className="corridor-door-sticker display-en">{door.english}</span><span className="corridor-door-handle decor" aria-hidden="true"/><span className="corridor-door-checks decor" aria-hidden="true"/></span>
           <span className="corridor-door-label display-zh">{door.label}<span aria-hidden="true">↗</span></span>
         </button>
-        <div className="corridor-door-inside" id={`inside-${door.id}`} hidden={compact && open !== door.id}><span className="mono">{door.id === 'D' ? 'A PAGE OF YOUR OWN' : 'STEP INSIDE'}</span>{compact && <button type="button" className="comic-button" onClick={() => enter(door)}>进去 <span aria-hidden="true">→</span></button>}</div>
+        <div className="corridor-door-inside" id={`inside-${door.id}`} hidden={compact && open !== door.id}><span className="mono">{door.id === 'D' ? 'PUBLIC NOTES' : door.id === 'A' ? 'PERSON / BACKGROUND' : door.id === 'B' ? 'RESEARCH / PRACTICE' : 'WORK IN PROGRESS'}</span>{compact && <button type="button" className="comic-button" onClick={() => enter(door)}>进去 <span aria-hidden="true">→</span></button>}</div>
       </article>)}
       {['05', '06', '07', '08'].map((number, index) => <div key={number} className={`corridor-distant corridor-distant-${index + 1} decor`} aria-hidden="true"><span className="mono">{number}</span><i/></div>)}
       <div className="corridor-coordinate decor mono" aria-hidden="true"><span>〔</span> + <span>〕</span></div>

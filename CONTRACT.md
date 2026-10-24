@@ -17,3 +17,11 @@ Visual revision 2026-10-24: User supplied two references and requested simple cy
 Layout correction 2026-10-24: user reported narrow desktop/sidebar showing cards instead of corridor. Default spatial view now begins at 640px; below 640px defaults to list. >=640px has explicit 走廊/列表 selector. data-layout controls styling independently of screen media queries.
 
 Graffiti revision 2026-10-24: user authorized original image generation and decorative website integration. Shared Graffiti component owns the transparent 3:2 four-panel atlas with hidden semantics and pointer-events:none. Root owns shared art, Work, Landing, Corridor, ArchiveIndex; About/Now agents retain their page directories. Profile copy and diary remain unchanged. Explicit dimensions prevent layout shifts; all new art obeys data-decor=off and reduced motion.
+
+
+## 2026-10-24 阅读区与艺术展廊修订
+- `#/notes`: 公开随笔目录；`#/notes/:slug`: 独立阅读页。
+- 门D改为公开阅读。`#/diary`仅作为独立本地工具，沿用after-you-diary与现有schema。
+- 首批阅读内容来自profile审核文案；notes不导入diaryStore或IndexedDB模块。
+- 章节页与图形仅使用现有色板/字体/原创atlas及SVG；所有新增装饰可关闭，reducedmotion下停止位移。
+- 文件分工：art_landing仅Landing两文件；art_corridor仅Corridor两文件；art_chapters仅About/Work/Now六文件；root负责路由、公开阅读、导航、集成与发布。

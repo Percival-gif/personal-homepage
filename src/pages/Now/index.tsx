@@ -47,9 +47,10 @@ export default function Now() {
 
   return <article className="now-page page-shell">
     <header className="now-hero">
-      <div className="now-status mono"><span className="now-status-dot decor" aria-hidden="true"/><span>NOW · {city} · {profile.currentYear}</span><span className="now-status-index">FILE / 03</span></div>
+      <svg className="now-circuit decor" aria-hidden="true" viewBox="0 0 1000 600" fill="none"><path d="M0 115h130l55 55h120m-305 220h120l70-70h175M1000 80H835l-75 75H650m350 335H810l-85-85H600M490 0v82l70 70M490 600v-90l-75-75"/><circle cx="305" cy="170" r="9"/><circle cx="365" cy="320" r="9"/><circle cx="650" cy="155" r="9"/><circle cx="600" cy="405" r="9"/><path d="M22 22h50m-50 0v50m906-50h50v50M22 528v50h50m906-50v50h-50"/></svg>
+      <div className="now-status mono"><span className="now-status-dot decor" aria-hidden="true"/><span>ROOM C / NOW · {city} · {profile.currentYear}</span><span className="now-status-index">FILE / 03</span></div>
       <div className="now-hero-heading">
-        <div className="now-hero-main"><p className="now-question display-zh">{pageLabels['/now']}</p><h1 className="display-en">NOW<span>.</span></h1><div className="now-hero-art-row"><p className="now-hero-subline mono">WORK / PRACTICE / DIRECTION</p><Graffiti variant="terminal" className="now-terminal-graffiti" eager/></div></div>
+        <div className="now-hero-main"><p className="now-question display-zh">{pageLabels['/now']}</p><h1 className="display-en">NOW<span>.</span></h1><p className="now-hero-manifest display-zh">模型能力，进入真实现场。</p><div className="now-hero-art-row"><p className="now-hero-subline mono">WORK / PRACTICE / DIRECTION</p><Graffiti variant="terminal" className="now-terminal-graffiti" eager/></div></div>
         <div className="now-hero-note"><span className="now-note-shadow decor" aria-hidden="true"/><Sticker tone="acid" rotate={-3}>{currentJob.period}</Sticker><div className="now-hero-note-paper"><Tape/><p className="mono">CURRENT ROLE</p><p className="display-zh">{currentJob.role}</p><p>{currentJob.company}</p><p>{currentJob.department}</p></div><span className="now-hero-side-note mono decor" aria-hidden="true">→ {city} / {profile.currentYear}</span></div>
       </div>
       <div className="now-ticker decor" aria-hidden="true"><div className="now-ticker-track">{Array.from({ length: 3 }, (_, index) => <Fragment key={index}><span>{currentJob.department} / {currentJob.role} / {city}</span><span>✳</span></Fragment>)}</div></div>

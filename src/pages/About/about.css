@@ -181,3 +181,36 @@
 @media (prefers-reduced-motion: reduce) {
  .about-identity-stickers, .about-question, .about-title-underlay, .about-edition, .about-stack-paper, .about-education-tab, .about-language-card { transform: none !important; }
 }
+
+/* Room A: an editorial personal dossier. Large type carries the collage. */
+.about-title-mount{overflow:hidden;padding:48px 0 22px;border-width:0 0 5px;box-shadow:none;background:var(--paper)}
+.about-title-underlay{inset:auto -4% 21% -4%;height:34%;background:var(--acid);border:0;transform:rotate(-5deg)}
+.about-question{margin:0 0 20px 12px;font-size:clamp(24px,3vw,38px);width:fit-content;z-index:3}
+.about-hero h1{z-index:1;font-size:clamp(72px,15.8vw,228px);letter-spacing:-.045em;line-height:1.04;white-space:nowrap;transform:translateX(-.025em)}
+.about-person-orbit{position:absolute;inset:9% -3% auto;width:106%;height:84%;max-width:none;stroke:var(--blue);stroke-width:2;z-index:2;pointer-events:none}
+.about-edition{top:17px;right:7px;background:var(--paper);font-size:9px;z-index:3}
+.about-gallery-caption{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding-top:24px}
+.about-gallery-caption>.mono{font-size:10px}
+.about-gallery-caption>.display-zh{font-size:24px;line-height:1.5}
+.about-hero-bottom{margin-top:34px}
+.about-dossier-intro{padding:22px 0 30px;background:transparent;color:var(--ink);border:0;box-shadow:none;overflow:hidden}
+.about-dossier-intro h2{position:relative;z-index:2;font-size:clamp(42px,5.5vw,76px)}
+.about-intro-number{font-size:clamp(130px,17vw,240px);color:var(--blue);letter-spacing:-.05em;margin-top:25px}
+.about-file-geometry{position:absolute;right:-5px;bottom:5px;width:75%;stroke:var(--ink);stroke-width:1.3;transform:rotate(-13deg)}
+.about-id-stack{transform:rotate(-1deg)}
+.about-introduction-copy{border:0;border-left:3px solid var(--magenta);box-shadow:none;padding-top:0;padding-bottom:0}
+.about-research-overview{border:0;border-top:2px solid var(--ink);box-shadow:none;padding-left:0;padding-right:0;padding-bottom:0}
+.about-research-areas{gap:56px}
+.about-research-area{border-width:0 0 2px;border-color:var(--ink);box-shadow:none;padding:0 0 32px;background:var(--paper)}
+.about-research-area-2,.about-research-area-4{margin-top:48px}
+.about-research-area-meta{padding-top:18px;border-top:6px solid var(--ink);border-bottom-width:1px}
+.about-research-area-2 .about-research-area-meta{border-top-color:var(--blue)}
+.about-research-area-3 .about-research-area-meta{border-top-color:var(--magenta)}
+@media(max-width:767px){
+ .about-title-mount{padding-top:38px}.about-hero h1{font-size:15.7vw}.about-question{font-size:24px;margin-left:3px}
+ .about-gallery-caption{align-items:flex-start;flex-direction:column;gap:12px}.about-gallery-caption>.display-zh{font-size:22px}
+ .about-edition{font-size:8px;padding:7px;top:0}.about-person-orbit{stroke-width:2.5}
+ .about-dossier-intro{padding-top:0}.about-file-geometry{width:46%;right:4%}.about-intro-number{font-size:140px}
+ .about-id-stack{transform:none}.about-research-areas{gap:40px}.about-research-area-2,.about-research-area-4{margin-top:0}
+}
+@media(prefers-reduced-motion:reduce){.about-hero h1,.about-id-stack,.about-file-geometry{transform:none!important}}

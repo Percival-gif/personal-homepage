@@ -58,3 +58,43 @@
 .corridor-door-B .corridor-generated-art{rotate:6deg}
 .corridor-door-C .corridor-generated-art{rotate:-3deg}
 .corridor-page[data-layout="list"] .corridor-door-panel>.corridor-generated-art{left:auto;right:14px;top:15%;width:clamp(110px,32vw,190px);rotate:4deg}
+
+/* A drawn exhibition space: heavy foreground, fine lines at the vanishing point. */
+.corridor-room .room-structure{opacity:.25;stroke-width:1}
+.corridor-room .room-portals{opacity:.44}
+.corridor-room .room-portals path:first-child{stroke-width:2.5}
+.corridor-room .room-near-frame{stroke:var(--paper);stroke-width:4;opacity:.7}
+.corridor-room .room-wall-notations{stroke:var(--paper);stroke-width:1;opacity:.22}
+.corridor-room .room-floor-route{stroke:var(--acid);stroke-width:1;opacity:.28;stroke-dasharray:7 11}
+.corridor-room .room-accent-left,.corridor-room .room-accent-right{stroke:var(--blue);opacity:.85}
+.corridor-room .room-register{opacity:.8}
+.corridor-intro h1{letter-spacing:-.065em}
+.corridor-wall-type{position:absolute;pointer-events:none;z-index:-2;top:1%;font-size:clamp(65px,12.5vw,210px);line-height:1;color:var(--paper);opacity:.085;letter-spacing:-.045em}
+.corridor-wall-type-left{left:5%;transform:skewY(20deg) scaleX(.88);transform-origin:left center}
+.corridor-wall-type-right{right:5%;transform:skewY(-20deg) scaleX(.88);transform-origin:right center}
+.corridor-neon{top:39%;left:45%;width:10%;padding:8px 0 5px;gap:5px}
+.corridor-neon>span:first-child{font-size:7px}
+.corridor-neon strong{font-size:clamp(15px,1.85vw,28px)}
+.corridor-end-emblem{width:clamp(28px,4.5vw,65px);height:auto;color:var(--acid);transition:opacity 180ms}
+.corridor-neon>.corridor-end-code{color:var(--paper);font-size:6px;letter-spacing:.25em}
+.corridor-door-A{--panel-accent:var(--acid)}
+.corridor-door-B{--panel-accent:var(--paper)}
+.corridor-door-C{--panel-accent:var(--magenta)}
+.corridor-door-D{--panel-accent:var(--amber)}
+.corridor-door-button{border-top:3px solid var(--panel-accent);transition:border-color 160ms}
+.corridor-door-art-D{color:var(--amber)}
+.corridor-door.is-open .corridor-door-button{border-color:var(--panel-accent)}
+.corridor-door.is-open .corridor-door-reveal:after{content:'';position:absolute;inset:11px;border:1px solid currentColor;opacity:.3;pointer-events:none}
+.corridor-page[data-active-room]:not([data-active-room=""]) .corridor-end-emblem{opacity:.45}
+.corridor-page[data-layout="list"] .corridor-wall-type{display:none}
+.corridor-page[data-layout="list"] .corridor-door-button{border-top:3px solid var(--panel-accent)}
+.corridor-page[data-layout="list"] .corridor-door-panel{background:linear-gradient(110deg,var(--ink) 64%,rgb(243 237 223 / .035) 64%)}
+.corridor-page[data-layout="list"] .corridor-door.is-open .corridor-door-label{border-left:5px solid var(--panel-accent);padding-left:12px}
+@media(min-width:640px) and (max-width:1023px){
+  .corridor-neon{top:40%;left:44.4%;width:11.2%}
+  .corridor-page[data-layout="space"] .corridor-neon strong{font-size:clamp(13px,2vw,19px)}
+  .corridor-neon>span:first-child{font-size:6px;letter-spacing:.12em}
+  .corridor-end-emblem{width:31px}
+  .corridor-wall-type{top:7%;font-size:13vw}
+}
+@media(prefers-reduced-motion:reduce){.corridor-end-emblem,.corridor-door-button{transition:none}}

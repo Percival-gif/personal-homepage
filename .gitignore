@@ -1,6 +1,11 @@
-node_modules/
+node_modules
 dist/
 qa/screens/
 .preview-local/
 generated_images/
 qa/graffiti-review/
+
+test-results/
+playwright-report/
+
+.playwright-browsers/

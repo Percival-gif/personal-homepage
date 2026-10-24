@@ -25,11 +25,13 @@ export default function About() {
       <header className="about-hero" onPointerMove={tiltIdentity} onPointerLeave={resetTilt}>
         <div className="about-hero-top"><p className="mono">01 / ABOUT THE PERSON</p><Stamp tone="blue">个人档案</Stamp></div>
         <div className="about-title-mount">
+          <svg className="about-person-orbit decor" aria-hidden="true" viewBox="0 0 900 280" fill="none"><ellipse cx="460" cy="145" rx="410" ry="88" transform="rotate(-12 460 145)"/><path d="M80 200 820 42M119 52v25m-12-13h24M758 201v32m-16-16h32"/><circle cx="743" cy="62" r="13"/></svg>
           <span className="about-title-underlay decor" aria-hidden="true" />
           <p className="about-question display-zh">{pageLabels['/about']}</p>
           <h1 className="display-en">{profile.name.toUpperCase()}</h1>
           <span className="about-edition decor mono" aria-hidden="true">PERSONAL<br/>ARCHIVE</span>
         </div>
+        <div className="about-gallery-caption"><span className="mono">ROOM A / THE PERSON</span><span className="display-zh">经历构成坐标，思考连接它们。</span></div>
         <div className="about-hero-bottom">
           <p className="mono">IDENTITY / EDUCATION / RESEARCH</p>
           <div ref={identity} className="about-identity-stickers" aria-label="身份标签">
@@ -42,7 +44,7 @@ export default function About() {
         <div className="about-dossier-intro">
           <p className="eyebrow mono">01—A / IDENTITY</p>
           <h2 id="about-dossier-title" className="display-zh">从这里<br/>认识我。</h2>
-          <span className="about-intro-number decor display-en" aria-hidden="true">01</span>
+          <span className="about-intro-number decor display-en" aria-hidden="true">01</span><svg className="about-file-geometry decor" aria-hidden="true" viewBox="0 0 220 150" fill="none"><circle cx="110" cy="75" r="59"/><path d="M15 75h190M110 5v140M68 33l84 84m0-84-84 84"/><circle cx="110" cy="75" r="26"/></svg>
         </div>
         <div className="about-id-stack">
           <span className="about-stack-paper decor" aria-hidden="true" />

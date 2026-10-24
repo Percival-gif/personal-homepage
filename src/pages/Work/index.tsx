@@ -32,9 +32,11 @@ export default function Work() {
   return (
     <article className="work-page page-shell">
       <header className="work-hero">
+        <svg className="work-blueprint decor" aria-hidden="true" viewBox="0 0 1200 430" fill="none"><path d="M20 30h1160v370H20zM20 105h1160M20 325h1160M160 30v370M1040 30v370M20 215h1160"/><circle cx="600" cy="215" r="162"/><ellipse cx="600" cy="215" rx="252" ry="84"/><path d="M390 60 810 370M390 370 810 60M10 20h20m-10-10v20m1150 380h20m-10-10v20"/></svg>
         <div className="work-hero-meta"><p className="mono">02 / WORK & RESEARCH</p><Stamp tone="acid">研究与实践</Stamp></div>
         <h1 className="display-zh"><span>{pageLabels['/work']}</span></h1>
         <div className="work-hero-bottom"><span className="display-en">WORK.</span><Graffiti variant="orbit" className="work-hero-doodle" eager/><div className="work-hero-ticket"><span className="mono">ARCHIVE / 02</span><p className="display-zh">学术 × 产业</p><span className="mono">RESEARCH / PRACTICE</span></div></div>
+        <div className="work-exhibition-caption mono"><span>ROOM B / RESEARCH & PRACTICE</span><span>问题 → 实验 → 工程</span></div>
         <div className="work-hero-registration decor" aria-hidden="true"><span>+</span><span>02</span><span>+</span></div>
       </header>
 
@@ -63,7 +65,7 @@ export default function Work() {
             <p className="work-case-organization">{academic.project.organization}</p>
             <Panel className="work-case-summary"><Tape/><p className="mono">项目说明 / PROJECT NOTES</p><p>{academic.project.summary}</p><p>{academic.project.perspective}</p></Panel>
             <ol className="work-case-panels">{academic.project.steps.map((step, index) => <li key={step.title}>
-              <div className="work-frame-top"><span className="mono">FRAME / 0{index + 1}</span><span className="work-frame-arrow decor" aria-hidden="true">↗</span></div>
+              <div className="work-frame-top"><span className="mono">FIG. / 0{index + 1}</span><span className="work-figure-number decor display-en" aria-hidden="true">0{index + 1}</span><span className="work-frame-arrow decor" aria-hidden="true">↗</span></div>
               <h4 className="display-zh">{step.title}</h4><p>{step.body}</p>
             </li>)}</ol>
           </section>

@@ -13,7 +13,7 @@ try {
   chrome=await chromeLauncher.launch({chromePath:process.env.CHROME_PATH??chromium.executablePath(),chromeFlags:['--headless','--no-sandbox','--disable-dev-shm-usage']});
   await fs.mkdir('qa/lighthouse',{recursive:true});
   const scores=[];
-  for(const route of ['/','/corridor','/about','/work','/now','/diary']){
+  for(const route of ['/','/corridor','/about','/work','/now','/notes','/diary']){
     const result=await lighthouse(`http://127.0.0.1:${port}/#${route}`,{port:chrome.port,output:'html',logLevel:'error',onlyCategories:['performance','accessibility','best-practices']});
     if(!result)throw new Error('Lighthouse did not return a report');
     const categories=result.lhr.categories;

@@ -162,9 +162,9 @@ export const doors: Door[] = [
   { id: 'A', number: '01', label: '我是谁？', english: 'ABOUT', path: '/about', tone: 'acid' },
   { id: 'B', number: '02', label: '我做过什么？', english: 'WORK', path: '/work', tone: 'blue' },
   { id: 'C', number: '03', label: '我现在在做什么？', english: 'NOW', path: '/now', tone: 'magenta' },
-  { id: 'D', number: '04', label: '我今天想说什么？', english: 'DIARY', path: '/diary', tone: 'amber' },
+  { id: 'D', number: '04', label: '我在想什么？', english: 'NOTES', path: '/notes', tone: 'amber' },
 ];
 export const pageLabels: Record<string, string> = {
   '/': 'Welcome', '/corridor': '涂鸦走廊',
-  '/about': doors[0].label, '/work': doors[1].label, '/now': doors[2].label, '/diary': doors[3].label,
+  '/about': doors[0].label, '/work': doors[1].label, '/now': doors[2].label, '/notes': doors[3].label, '/diary': '私人笔记本',
 };
