@@ -48,6 +48,22 @@ for (const width of [390, 768, 1440]) {
     }
   });
 }
+test('work header stays inside the viewport around the tablet breakpoint', async ({ page }) => {
+  await page.goto('/#/work');
+  for (const width of [640, 700, 767, 768, 1024]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await expect(page.locator('h1')).toBeVisible();
+    await page.evaluate(() => document.fonts.ready);
+    const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
+    for (const selector of ['.work-hero-ticket', '.work-hero-doodle']) {
+      const bounds = await page.locator(selector).boundingBox();
+      expect(bounds).not.toBeNull();
+      expect(bounds!.x, `${selector} clipped at ${width}px`).toBeGreaterThanOrEqual(0);
+      expect(bounds!.x + bounds!.width, `${selector} clipped at ${width}px`).toBeLessThanOrEqual(viewportWidth);
+    }
+    if (width === 640) await page.screenshot({ path: 'qa/screens/640-work-header.png' });
+  }
+});
 test('keyboard door entry, Escape and browser history', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/#/corridor');
