@@ -19,4 +19,5 @@
 .work-award h3{overflow-wrap:anywhere}
 .work-award[data-award-status='提名']{border-left:8px solid var(--magenta);transform:none}
 .work-award[data-award-status='提名'] .work-award-ticket{background:var(--paper)}
+.work-award[data-award-status='提名'] .stamp{color:var(--ink);background:var(--magenta)}
 @media(max-width:639px){.work-conference{padding:24px 20px}.work-conference h3{font-size:25px}.work-conference>p:not(.mono),.work-case-summary>p:not(.mono){font-size:16px}.work-award[data-award-status='提名']{grid-template-columns:1fr}.work-award[data-award-status='提名'] .work-award-medal{width:48px}}
