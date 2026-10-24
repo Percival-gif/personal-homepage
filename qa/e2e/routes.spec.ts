@@ -3,9 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 import { profile, getBirthLabel, getLocationLabel } from '../../src/data/profile';
 const routes = ['/', '/corridor', '/about', '/work', '/now', '/diary'];
 const visibleFacts:Record<string,string[]>={
-  '/about':[profile.name,profile.gender,profile.country,getBirthLabel(),getLocationLabel(),...profile.languages.flatMap(x=>[x.name,x.label]),...profile.education.flatMap(x=>[x.period,x.school,x.field,x.degree]),profile.research.intro,...profile.research.topics],
-  '/work':[profile.academic.summary,profile.academic.project.name,profile.academic.project.organization,profile.academic.project.summary,...profile.academic.project.steps.map(x=>x.body),profile.industry.company,profile.industry.department,profile.industry.period,...profile.industry.responsibilities,...profile.industry.awards.flatMap(x=>[x.date,x.title,...(x.detail?[x.detail]:[])])],
-  '/now':[...profile.currentWork.flatMap(x=>[x.company,x.department,x.role,x.period,...x.responsibilities]),...profile.skills.flatMap(x=>[x.title,x.body])],
+  '/about':[profile.name,profile.gender,profile.country,getBirthLabel(),getLocationLabel(),profile.introduction.title,...profile.introduction.paragraphs,...profile.languages.flatMap(x=>[x.name,x.label]),...profile.education.flatMap(x=>[x.period,x.school,x.field,x.degree]),profile.research.intro,...profile.research.topics,...profile.research.overview,...profile.research.areas.flatMap(x=>[x.title,x.body])],
+  '/work':[profile.academic.summary,profile.academic.perspective,profile.academic.conference.title,...profile.academic.conference.paragraphs,profile.academic.project.name,profile.academic.project.organization,profile.academic.project.summary,profile.academic.project.perspective,...profile.academic.project.steps.flatMap(x=>[x.title,x.body]),profile.industry.company,profile.industry.department,profile.industry.period,...profile.industry.responsibilities,...[...profile.industry.awards,...profile.academic.project.awards].flatMap(x=>[...(x.date?[x.date]:[]),x.title,x.status,x.detail])],
+  '/now':[profile.currentFocus.title,...profile.currentFocus.introduction,...profile.currentFocus.areas.flatMap(x=>[x.title,x.body]),...profile.currentFocus.approach.flatMap(x=>[x.title,x.body]),profile.currentFocus.closing,...profile.currentWork.flatMap(x=>[x.company,x.department,x.role,x.period,...x.responsibilities,...x.details]),...profile.skills.flatMap(x=>[x.title,x.body])],
 };
 for (const width of [390, 768, 1440]) {
   test.describe(`${width}px`, () => {
@@ -28,6 +28,18 @@ for (const width of [390, 768, 1440]) {
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
         const renderedText=(await page.locator('main').innerText()).replace(/\s/g,'');
         for(const fact of visibleFacts[route]??[])expect(renderedText,`Missing visible source content: ${fact}`).toContain(fact.replace(/\s/g,''));
+        if(route==='/about')expect(renderedText).not.toContain(profile.birthDate);
+        if(route==='/work'){
+          const nominations=page.locator('[data-award-status="提名"]');
+          await expect(nominations).toHaveCount(2);
+          for(const award of profile.academic.project.awards){
+            const card=nominations.filter({has:page.getByRole('heading',{name:award.title,exact:true})});
+            await expect(card).toContainText('提名');
+            await expect(card).not.toContainText('获奖');
+          }
+          await expect(page.locator('[data-award-status="获奖"]').filter({has:page.getByRole('heading',{name:'国家技术发明奖',exact:true})})).toHaveCount(1);
+          expect(renderedText).not.toContain('国家一级科研奖');
+        }
         const a11y = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
         expect(a11y.violations).toEqual([]);
         expect(errors).toEqual([]);

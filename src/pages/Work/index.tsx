@@ -13,6 +13,10 @@ const contents = [
 
 export default function Work() {
   const { academic, industry } = profile;
+  const honors = [
+    ...industry.awards.map(award => ({ ...award, context: industry.company })),
+    ...academic.project.awards.map(award => ({ ...award, context: academic.project.name })),
+  ];
   const { hash } = useLocation();
   useEffect(() => {
     const target = hash && document.getElementById(hash.slice(1));
@@ -45,12 +49,18 @@ export default function Work() {
           <Panel className="work-results-note">
             <p className="mono">SELF-REPORTED / 统计口径来自本人资料</p>
             <p className="work-academic-summary">{academic.summary}</p>
+            <p className="work-academic-summary">{academic.perspective}</p>
+          </Panel>
+          <Panel className="work-conference">
+            <p className="mono">RESEARCH / METHODS & EXPERIMENTS</p>
+            <h3 className="display-zh">{academic.conference.title}</h3>
+            {academic.conference.paragraphs.map(text => <p key={text}>{text}</p>)}
           </Panel>
 
           <section className="work-case" aria-labelledby="work-estrella">
             <div className="work-case-heading"><div><p className="mono">RESEARCH / CASE FILE</p><h3 id="work-estrella" tabIndex={-1} className="display-en">{academic.project.name}</h3></div><Sticker tone="magenta" rotate={2}>CASE STUDY</Sticker></div>
             <p className="work-case-organization">{academic.project.organization}</p>
-            <Panel className="work-case-summary"><Tape/><p className="mono">项目说明 / PROJECT NOTES</p><p>{academic.project.summary}</p></Panel>
+            <Panel className="work-case-summary"><Tape/><p className="mono">项目说明 / PROJECT NOTES</p><p>{academic.project.summary}</p><p>{academic.project.perspective}</p></Panel>
             <ol className="work-case-panels">{academic.project.steps.map((step, index) => <li key={step.title}>
               <div className="work-frame-top"><span className="mono">FRAME / 0{index + 1}</span><span className="work-frame-arrow decor" aria-hidden="true">↗</span></div>
               <h4 className="display-zh">{step.title}</h4><p>{step.body}</p>
@@ -71,10 +81,13 @@ export default function Work() {
 
           <section className="work-awards" aria-labelledby="work-honors">
             <div id="work-honors" tabIndex={-1}><SectionTitle eyebrow="RECOGNITION">荣誉记录。</SectionTitle></div>
-            <div className="work-awards-list">{industry.awards.map((award, index) => <Panel className={`work-award work-award-${index + 1}`} key={award.date}>
+            <div className="work-awards-list">{honors.map((award, index) => <Panel className={`work-award work-award-${index + 1}`} key={`${award.context}-${award.title}`} data-award-status={award.status}>
               <span className="work-award-ticket mono">RECORD / 0{index + 1}</span>
-              <div className="work-award-medal decor" aria-hidden="true"><svg viewBox="0 0 100 120" fill="none"><path d="m25 76-5 39 30-17 30 17-5-39" stroke="currentColor" strokeWidth="3"/><path d="m50 5 9 7 12-1 6 11 11 6-1 12 7 9-7 10 1 12-11 6-6 11-12-1-9 7-9-7-12 1-6-11-11-6 1-12-7-10 7-9-1-12 11-6 6-11 12 1Z" fill="var(--paper)" stroke="currentColor" strokeWidth="3"/><circle cx="50" cy="49" r="27" stroke="currentColor" strokeWidth="2"/><path d="m36 49 9 10 20-23" stroke="currentColor" strokeWidth="4"/></svg></div>
-              <div className="work-award-copy"><p className="mono">{award.date}</p><h3 className="display-zh">{award.title}</h3>{award.detail && <p className="work-award-detail">{award.detail}</p>}</div>
+              <div className="work-award-medal decor" aria-hidden="true">{award.status === '获奖'
+                ? <svg viewBox="0 0 100 120" fill="none"><path d="m25 76-5 39 30-17 30 17-5-39" stroke="currentColor" strokeWidth="3"/><path d="m50 5 9 7 12-1 6 11 11 6-1 12 7 9-7 10 1 12-11 6-6 11-12-1-9 7-9-7-12 1-6-11-11-6 1-12-7-10 7-9-1-12 11-6 6-11 12 1Z" fill="var(--paper)" stroke="currentColor" strokeWidth="3"/><circle cx="50" cy="49" r="27" stroke="currentColor" strokeWidth="2"/><path d="m36 49 9 10 20-23" stroke="currentColor" strokeWidth="4"/></svg>
+                : <svg viewBox="0 0 100 120" fill="none"><path d="M16 8h68v100H16zM29 25h42M29 37h26" stroke="currentColor" strokeWidth="3"/><circle cx="50" cy="73" r="19" stroke="currentColor" strokeWidth="3"/><path d="M50 60v26M37 73h26m-22-9 18 18m0-18L41 82" stroke="currentColor" strokeWidth="3"/></svg>}
+              </div>
+              <div className="work-award-copy"><p className="mono">{award.context}{award.date ? ` / ${award.date}` : ''}</p><h3 className="display-zh">{award.title}</h3><Stamp tone={award.status === '提名' ? 'magenta' : 'ink'}>{award.status}</Stamp><p className="work-award-detail">{award.detail}</p></div>
             </Panel>)}</div>
           </section>
         </section>

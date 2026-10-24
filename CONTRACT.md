@@ -1,4 +1,5 @@
 # Implementation contract
+Reviewed copy override 2026-10-24: user approved the expanded copy and authorized filling pages. Default birth display is year, city only; privacy flags false. Academic skill uses reviewed narrative without unpartitioned 8-count. Battery award = 国家技术发明奖 (team); both Estrella honors = 提名, with no invented dates. These explicit approvals supersede older content/default rules below. Profile adds introduction, research overview/areas, academic perspective/conference/project awards, employment details, currentFocus. Orchestrator owns profile/Work/QA integration for this revision; About and Now agents own their respective page directories only.
 Read REQUIREMENTS.md in full. User confirmed Manchester = 在读博士 (人工智能), not MSc. Title fonts only Smiley Sans + Anton, body/diary system fonts. Target existing Percival-gif/personal-homepage repository, do not deploy or overwrite existing remote until integrated.
 Stages: 0 green baseline; 1 T+D+C parallel; 2 L+R+A parallel; gate build/screens/keyboard; 3 W+N+V; 4 read-only QA; 5 fix/report.
 All agents inherit current model, no override.

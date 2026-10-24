@@ -31,6 +31,13 @@
 .about-location dd { margin: 6px 0 0; font-size: 17px; font-weight: 650; }
 .about-id-foot { padding-top: 16px; border-top: 2px solid var(--ink); }
 .about-barcode { width: 92px; height: 24px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 12px, transparent 12px 14px); }
+.about-introduction { display: grid; grid-template-columns: .7fr 1.3fr; align-items: start; gap: clamp(40px, 6vw, 96px); }
+.about-introduction-heading { padding-top: 20px; }
+.about-introduction-heading > .eyebrow { font-size: 10px; }
+.about-introduction-heading h2 { margin-top: 22px; font-size: clamp(34px, 4vw, 54px); line-height: 1.4; max-width: 8em; }
+.about-introduction-copy { min-width: 0; padding: 34px clamp(24px, 3vw, 42px); border-left: 10px solid var(--magenta); background: var(--paper); color: var(--ink); }
+.about-introduction-copy p, .about-research-overview p { margin: 0; font-size: 18px; line-height: 1.95; overflow-wrap: anywhere; }
+.about-introduction-copy p + p, .about-research-overview p + p { margin-top: 22px; }
 .about-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 35px; }
 .about-section-heading h2 { margin-top: 10px; }
 .about-side-note { padding-bottom: 7px; border-bottom: 3px solid var(--blue); }
@@ -64,17 +71,19 @@
 .about-research-title > p { font-size: clamp(32px, 5vw, 64px); line-height: 1.3; max-width: 13em; }
 .about-quote { color: var(--acid); font-size: 100px; line-height: 1; }
 .about-research-title > .mono { grid-column: 2; margin-top: 5px; }
-.about-research-groups { display: grid; grid-template-columns: 1fr 1.1fr; gap: 36px; margin-top: 52px; align-items: start; }
-.about-research-group { position: relative; border: var(--stroke); box-shadow: 6px 6px 0 var(--ink); padding: 28px; }
-.about-research-model { background: var(--acid); margin-top: 22px; }
-.about-research-model h3 { font-size: 32px; margin-top: 25px; line-height: 1.3; }
-.about-research-model > p { margin-top: 20px; font-size: 18px; line-height: 1.8; }
-.about-group-arrow { display: block; margin-top: 16px; font-size: 40px; line-height: 1; }
-.about-research-llm { background: var(--paper); border-top: 12px solid var(--magenta); }
-.about-research-llm ul { list-style: none; padding: 0; margin: 22px 0 0; }
-.about-research-llm li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 17px 0; border-top: 1px solid var(--ink); font-size: 20px; font-weight: 650; line-height: 1.6; }
-.about-research-llm li > .mono { padding-top: 4px; font-size: 11px; }
-.about-research-original { margin-top: 44px; border-top: 3px solid var(--ink); padding-top: 26px; display: grid; grid-template-columns: .5fr 1fr; gap: 40px; }
+.about-research-overview { margin-top: 96px; padding: 30px clamp(24px, 4vw, 50px); background: var(--paper); color: var(--ink); }
+.about-research-overview p { max-width: 68ch; }
+.about-research-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; margin-top: 96px; padding-right: 10px; align-items: start; }
+.about-research-area { min-width: 0; padding: 28px clamp(24px, 3vw, 38px) 34px; background: var(--paper); color: var(--ink); }
+.about-research-area-2 { margin-top: 28px; border-top: 12px solid var(--blue); }
+.about-research-area-3 { border-top: 12px solid var(--magenta); }
+.about-research-area-4 { margin-top: 28px; border-bottom: 12px solid var(--ink); }
+.about-research-area-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+.about-research-area-meta > .mono { font-size: 10px; letter-spacing: .05em; }
+.about-research-area-meta > .display-en { font-size: 30px; line-height: 1; }
+.about-research-area h3 { font-size: clamp(27px, 3vw, 36px); line-height: 1.4; margin-top: 24px; overflow-wrap: anywhere; }
+.about-research-area > p { margin-top: 20px; font-size: 18px; line-height: 1.95; overflow-wrap: anywhere; }
+.about-research-original { margin-top: 96px; border-top: 3px solid var(--ink); padding-top: 26px; display: grid; grid-template-columns: .5fr 1fr; gap: 40px; }
 .about-research-original > div { max-width: 56ch; font-size: 18px; line-height: 1.9; }
 .about-keywords { display: flex; flex-wrap: wrap; gap: 14px 18px; list-style: none; padding: 0; margin: 30px 0 0; max-width: 850px; }
 .about-keywords mark { background: var(--acid); color: var(--ink); padding: 3px 8px; font-size: 14px; box-decoration-break: clone; }
@@ -89,8 +98,10 @@
  .about-language-stamps { gap: 18px; }
  .about-language-card { padding: 20px 16px; }
  .about-language-card h3 { font-size: 29px; }
- .about-research-groups { gap: 25px; }
- .about-research-group { padding: 24px; }
+ .about-introduction { grid-template-columns: 1fr; gap: 30px; }
+ .about-introduction-heading h2 { max-width: none; }
+ .about-research-areas { gap: 28px; }
+ .about-research-area { padding: 24px; }
 }
 @media (max-width: 639px) {
  .about-hero-top { margin-bottom: 54px; gap: 10px; }
@@ -120,6 +131,9 @@
  .about-monogram > span { font-size: 92px; }
  .about-location { padding: 12px; }
  .about-location dd { font-size: 15px; }
+ .about-introduction-copy { padding: 28px 22px; border-left-width: 7px; }
+ .about-introduction-copy p, .about-research-overview p { font-size: 17px; }
+ .about-introduction-heading h2 { font-size: 34px; }
  .about-section-heading { margin-bottom: 28px; }
  .about-side-note { font-size: 9px; }
  .about-language-stamps { grid-template-columns: 1fr; gap: 28px; padding-right: 8px; }
@@ -146,11 +160,13 @@
  .about-quote { font-size: 60px; }
  .about-research-title > p { font-size: 32px; }
  .about-research-title > .mono { font-size: 9px; }
- .about-research-groups { grid-template-columns: 1fr; gap: 28px; margin-top: 38px; padding-right: 7px; }
- .about-research-model { margin-top: 0; }
- .about-research-model h3 { font-size: 30px; }
- .about-research-llm li { font-size: 18px; }
- .about-research-original { grid-template-columns: 1fr; gap: 18px; margin-top: 36px; }
+ .about-research-overview { padding: 27px 22px; }
+ .about-research-areas { grid-template-columns: 1fr; gap: 30px; padding-right: 7px; }
+ .about-research-area { padding: 25px 22px 30px; }
+ .about-research-area-2, .about-research-area-4 { margin-top: 0; }
+ .about-research-area h3 { font-size: 28px; }
+ .about-research-area > p { font-size: 17px; }
+ .about-research-original { grid-template-columns: 1fr; gap: 18px; }
  .about-research-original > div { font-size: 17px; }
  .about-keywords { gap: 15px; }
  .about-page-end { margin-top: 96px; }

@@ -8,9 +8,6 @@ const languageTones = ['acid', 'blue', 'magenta'] as const;
 const location = profile.privacy.showDistrict
   ? [profile.location.country, profile.location.province, getLocationLabel()].join(' · ')
   : getLocationLabel();
-const modelTopic = profile.research.topics[0].split('，')[0].replace(/^研究/, '');
-const applicationTopic = profile.research.topics[0].split('，')[1];
-const llmTopics = profile.research.topics[1].replace(/。$/, '').split('、');
 
 export default function About() {
   const identity = useRef<HTMLDivElement>(null);
@@ -67,6 +64,11 @@ export default function About() {
         </div>
       </section>
 
+      <section className="about-introduction page-section" aria-labelledby="about-introduction-title">
+        <div className="about-introduction-heading"><p className="eyebrow mono">PERSONAL NOTES / ABOUT ME</p><h2 id="about-introduction-title" className="display-zh">{profile.introduction.title}</h2></div>
+        <Panel className="about-introduction-copy"><Tape/>{profile.introduction.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</Panel>
+      </section>
+
       <section className="about-languages page-section" aria-labelledby="about-language-title">
         <div className="about-section-heading"><div><p className="eyebrow mono">01—B / LANGUAGES</p><h2 id="about-language-title" className="display-zh">语言。</h2></div><span className="mono about-side-note">中文 / ENGLISH</span></div>
         <div className="about-language-stamps">{profile.languages.map((language, index) => <div key={language.name} className={`about-language-card tone-${languageTones[index]}`}>
@@ -95,9 +97,12 @@ export default function About() {
       <section className="about-research page-section" aria-label="课题方向">
         <SectionTitle number="03" eyebrow="RESEARCH INTERESTS">正在追问的方向。</SectionTitle>
         <div className="about-research-title"><span className="about-quote decor display-en" aria-hidden="true">“</span><p className="display-zh">{profile.research.intro}</p><span className="mono">RESEARCH NOTES / 03</span></div>
-        <div className="about-research-groups">
-          <div className="about-research-group about-research-model"><span className="mono">A / 方法与应用</span><h3 className="display-zh">{modelTopic}</h3><p>{applicationTopic}</p><span className="about-group-arrow decor" aria-hidden="true">↓</span></div>
-          <div className="about-research-group about-research-llm"><span className="mono">B / LLM 课题</span><ul>{llmTopics.map((topic,index)=><li key={topic}><span className="mono">0{index+1}</span><span>{topic}</span></li>)}</ul></div>
+        <Panel className="about-research-overview">{profile.research.overview.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</Panel>
+        <div className="about-research-areas">
+          {profile.research.areas.map((area, index) => <Panel key={area.title} className={`about-research-area about-research-area-${index + 1}`}>
+            <div className="about-research-area-meta"><span className="mono">RESEARCH / 0{index + 1}</span><span className="display-en decor" aria-hidden="true">↗</span></div>
+            <h3 className="display-zh">{area.title}</h3><p>{area.body}</p>
+          </Panel>)}
         </div>
         <div className="about-research-original"><p className="eyebrow mono">完整课题方向 / RESEARCH STATEMENT</p><div>{profile.research.topics.map(topic => <p key={topic}>{topic}</p>)}</div></div>
         <ul className="about-keywords" aria-label="研究关键词">{profile.research.keywords.map(keyword => <li key={keyword}><mark>{keyword}</mark></li>)}</ul>
