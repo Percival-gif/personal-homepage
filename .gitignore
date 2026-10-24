@@ -2,3 +2,5 @@ node_modules/
 dist/
 qa/screens/
 .preview-local/
+generated_images/
+qa/graffiti-review/

@@ -160,3 +160,23 @@
   .now-location>div{flex-basis:100%}.now-location h2{font-size:36px;max-width:10em}.now-location-art{width:90px}
 }
 @media(prefers-reduced-motion:reduce){.now-overview-index{transform:none!important}}
+
+/* The two illustrations occupy their own space, away from copy and controls. */
+.now-hero-main{min-width:0}
+.now-hero-art-row{display:flex;align-items:center;justify-content:space-between;gap:20px;min-width:0;padding-top:16px}
+.now-hero-art-row>.now-hero-subline{flex:1 1 0;min-width:0;max-width:21ch;margin:0;line-height:1.9}
+.now-terminal-graffiti{width:clamp(170px,15vw,220px);rotate:5deg;flex:none}
+.now-location-graffiti{width:clamp(140px,14vw,190px);rotate:-7deg;margin-right:10px}
+@media(max-width:1023px){
+  .now-hero-art-row{justify-content:flex-end;gap:30px;padding-top:12px}
+  .now-hero-art-row>.now-hero-subline{margin-right:auto}
+  .now-terminal-graffiti{width:180px}
+  .now-location-graffiti{width:140px;margin-right:0}
+}
+@media(max-width:639px){
+  .now-hero-art-row{gap:14px;padding-top:15px}
+  .now-hero-art-row>.now-hero-subline{font-size:8px;max-width:17ch;letter-spacing:.08em}
+  .now-terminal-graffiti{width:clamp(100px,30vw,130px)}
+  .now-location-graffiti{width:110px;margin-left:auto}
+}
+@media(prefers-reduced-motion:reduce){.now-terminal-graffiti,.now-location-graffiti{rotate:0deg!important}}

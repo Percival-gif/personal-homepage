@@ -14,7 +14,6 @@
 .about-dossier-intro { position: relative; padding: 34px 28px 30px; background: var(--blue); color: var(--paper); border: var(--stroke); box-shadow: 8px 8px 0 var(--ink); }
 .about-dossier-intro h2 { margin-top: 22px; font-size: clamp(40px, 4.7vw, 68px); }
 .about-intro-number { display: block; margin-top: 32px; color: var(--acid); font-size: 100px; line-height: 1; }
-.about-scribble { display: block; width: 130px; color: var(--paper); position: absolute; right: 16px; bottom: 25px; }
 .about-id-stack { position: relative; margin-right: 10px; isolation: isolate; }
 .about-stack-paper { position: absolute; z-index: -1; inset: 12px -14px -12px 12px; border: var(--stroke); background: var(--magenta); transform: rotate(2deg); }
 .about-id-card { padding: 26px 30px; }
@@ -35,6 +34,7 @@
 .about-introduction-heading { padding-top: 20px; }
 .about-introduction-heading > .eyebrow { font-size: 10px; }
 .about-introduction-heading h2 { margin-top: 22px; font-size: clamp(34px, 4vw, 54px); line-height: 1.4; max-width: 8em; }
+.about-introduction-heading > .about-neural-art { width: clamp(180px, 18vw, 230px); margin: 18px 0 0 16px; rotate: -3deg; }
 .about-introduction-copy { min-width: 0; padding: 34px clamp(24px, 3vw, 42px); border-left: 10px solid var(--magenta); background: var(--paper); color: var(--ink); }
 .about-introduction-copy p, .about-research-overview p { margin: 0; font-size: 18px; line-height: 1.95; overflow-wrap: anywhere; }
 .about-introduction-copy p + p, .about-research-overview p + p { margin-top: 22px; }
@@ -71,6 +71,8 @@
 .about-research-title > p { font-size: clamp(32px, 5vw, 64px); line-height: 1.3; max-width: 13em; }
 .about-quote { color: var(--acid); font-size: 100px; line-height: 1; }
 .about-research-title > .mono { grid-column: 2; margin-top: 5px; }
+.about-research-title-wrap { position: relative; }
+.about-research-title-wrap > .about-research-arrow { position: absolute; top: calc(100% + 6px); right: 26px; width: 120px; rotate: -5deg; }
 .about-research-overview { margin-top: 96px; padding: 30px clamp(24px, 4vw, 50px); background: var(--paper); color: var(--ink); }
 .about-research-overview p { max-width: 68ch; }
 .about-research-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; margin-top: 96px; padding-right: 10px; align-items: start; }
@@ -94,12 +96,14 @@
  .about-id-card { padding: 24px; }
  .about-id-content { grid-template-columns: .7fr 1fr; gap: 20px; }
  .about-dossier-intro { padding: 28px 24px; }
- .about-scribble { width: 76px; }
  .about-language-stamps { gap: 18px; }
  .about-language-card { padding: 20px 16px; }
  .about-language-card h3 { font-size: 29px; }
  .about-introduction { grid-template-columns: 1fr; gap: 30px; }
- .about-introduction-heading h2 { max-width: none; }
+ .about-introduction-heading { display: grid; grid-template-columns: minmax(0, 1fr) 180px; column-gap: 24px; align-items: center; }
+ .about-introduction-heading > .eyebrow { grid-column: 1; }
+ .about-introduction-heading h2 { grid-column: 1; max-width: none; }
+ .about-introduction-heading > .about-neural-art { grid-column: 2; grid-row: 1 / 3; width: 180px; margin: 0; }
  .about-research-areas { gap: 28px; }
  .about-research-area { padding: 24px; }
 }
@@ -121,7 +125,6 @@
  .about-dossier-intro h2 { font-size: 40px; margin: 0; max-width: 4.5em; }
  .about-dossier-intro h2 br { display: none; }
  .about-intro-number { position: static; align-self: end; font-size: 70px; margin: 0; }
- .about-scribble { display: none; }
  .about-id-stack { margin-right: 9px; }
  .about-stack-paper { inset: 9px -9px -9px 9px; }
  .about-id-card { padding: 22px 20px; }
@@ -133,7 +136,9 @@
  .about-location dd { font-size: 15px; }
  .about-introduction-copy { padding: 28px 22px; border-left-width: 7px; }
  .about-introduction-copy p, .about-research-overview p { font-size: 17px; }
- .about-introduction-heading h2 { font-size: 34px; }
+ .about-introduction-heading { grid-template-columns: minmax(0, 1fr) 88px; column-gap: 16px; padding-top: 0; }
+ .about-introduction-heading h2 { grid-column: 1 / -1; grid-row: 2; margin-top: 8px; font-size: 34px; }
+ .about-introduction-heading > .about-neural-art { grid-column: 2; grid-row: 1; width: 88px; }
  .about-section-heading { margin-bottom: 28px; }
  .about-side-note { font-size: 9px; }
  .about-language-stamps { grid-template-columns: 1fr; gap: 28px; padding-right: 8px; }
@@ -160,6 +165,7 @@
  .about-quote { font-size: 60px; }
  .about-research-title > p { font-size: 32px; }
  .about-research-title > .mono { font-size: 9px; }
+ .about-research-title-wrap > .about-research-arrow { right: 15px; width: 100px; }
  .about-research-overview { padding: 27px 22px; }
  .about-research-areas { grid-template-columns: 1fr; gap: 30px; padding-right: 7px; }
  .about-research-area { padding: 25px 22px 30px; }

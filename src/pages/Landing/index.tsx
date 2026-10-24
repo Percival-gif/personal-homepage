@@ -5,6 +5,7 @@ import {profile} from '../../data/profile';
 import {Sticker} from '../../components/ui';
 import './landing.css';
 import { ArchiveIndex } from '../../components/ArchiveNavigation';
+import { Graffiti } from '../../components/Graffiti';
 
 export default function Landing(){
   const root=useRef<HTMLElement>(null);
@@ -49,7 +50,7 @@ export default function Landing(){
   },[enter]);
   return <><section className="landing" ref={root} aria-label="PERCIVAL 起始页">
     <div className="landing-grain decor" aria-hidden="true"/>
-    <div className="landing-collage decor" aria-hidden="true"><span className="landing-blue-cutout"/><span className="landing-magenta-orbit"/><span className="landing-acid-checker"/><span className="landing-poster-tag display-en">NLP<br/>× LLM</span><svg className="landing-drawn-arrow" viewBox="0 0 200 120" fill="none"><path d="M10 100C66 2 135 10 180 66m-40-2 42 5-11-39" stroke="currentColor" strokeWidth="5"/></svg></div>
+    <div className="landing-collage decor" aria-hidden="true"><span className="landing-blue-cutout"/><span className="landing-magenta-orbit"/><span className="landing-acid-checker"/><Graffiti variant="orbit" className="landing-graffiti" eager/><svg className="landing-drawn-arrow" viewBox="0 0 200 120" fill="none"><path d="M10 100C66 2 135 10 180 66m-40-2 42 5-11-39" stroke="currentColor" strokeWidth="5"/></svg></div>
     <header className="landing-topline mono"><span>PERSONAL ARCHIVE</span><span>{profile.location.city} / {profile.currentYear}</span><span className="landing-coordinate">INDEX — 00</span></header>
     <button type="button" className="landing-skip" onClick={enter}>跳过动画 ↗</button>
     <div className="landing-center">

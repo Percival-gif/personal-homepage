@@ -48,3 +48,6 @@
 [data-decor=off] .landing-profile-strip{transform:none;box-shadow:none}
 @media(max-width:767px){.landing-blue-cutout{top:26%;width:84%;height:15%}.landing-magenta-orbit{width:85vw;height:85vw;top:23%;right:-40%;border-width:12px}.landing-poster-tag{top:14%;right:8%;font-size:24px;padding:11px 15px}.landing-acid-checker{width:72px;height:40px;bottom:25%;left:3%}.landing-drawn-arrow{display:none}.landing-center{margin-top:125px;margin-bottom:48px}.landing-profile-strip{margin-top:38px;display:grid;grid-template-columns:1fr;gap:10px;padding:15px;box-shadow:5px 5px 0 var(--blue)}.landing-profile-strip>.mono{border-right:0;border-bottom:1px solid var(--ink);padding:0 0 7px}.landing-profile-strip>p{font-size:11px}.landing-strip-cross{display:none}.landing-afterword{gap:28px}.landing-logo-star{right:0;top:-40%}}
 @media(prefers-reduced-motion:reduce){.landing-profile-strip,.landing-blue-cutout,.landing-magenta-orbit,.landing-poster-tag,.landing-acid-checker{transform:none}}
+
+.landing-collage>.landing-graffiti{position:absolute;right:4%;top:10%;width:clamp(150px,19vw,270px);rotate:10deg}
+@media(max-width:767px){.landing-collage>.landing-graffiti{right:1%;top:100px;width:140px;rotate:8deg}}

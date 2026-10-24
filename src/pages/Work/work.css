@@ -21,3 +21,11 @@
 .work-award[data-award-status='提名'] .work-award-ticket{background:var(--paper)}
 .work-award[data-award-status='提名'] .stamp{color:var(--ink);background:var(--magenta)}
 @media(max-width:639px){.work-conference{padding:24px 20px}.work-conference h3{font-size:25px}.work-conference>p:not(.mono),.work-case-summary>p:not(.mono){font-size:16px}.work-award[data-award-status='提名']{grid-template-columns:1fr}.work-award[data-award-status='提名'] .work-award-medal{width:48px}}
+.work-hero-doodle{width:clamp(110px,15vw,235px);rotate:-9deg;margin-left:auto}
+.work-case-doodle{width:clamp(110px,12vw,170px);align-self:center;rotate:8deg}
+@media(max-width:1023px){.work-hero-bottom{gap:22px}.work-hero-doodle{width:clamp(100px,15vw,150px)}}
+@media(max-width:639px){.work-hero-bottom>.display-en{font-size:clamp(96px,26vw,150px)}.work-hero-bottom{gap:17px;align-items:center}.work-hero-doodle{width:100px;margin-left:auto}.work-case-doodle{width:110px}}
+
+
+@media(max-width:639px){.work-hero-bottom{display:grid;grid-template-columns:minmax(0,1fr) 96px;gap:18px 12px}.work-hero-bottom>.display-en{font-size:clamp(72px,24vw,120px)}.work-hero-doodle{width:96px}.work-hero-ticket{grid-column:1/-1}.work-case-heading{flex-wrap:nowrap}.work-case-doodle{width:100px}}
+@media(max-width:359px){.work-hero-bottom{grid-template-columns:minmax(0,1fr) 72px}.work-hero-doodle{width:72px}}

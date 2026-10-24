@@ -1,6 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Panel, SectionTitle, Stamp, Sticker, Tape } from '../../components/ui';
+import { Graffiti } from '../../components/Graffiti';
 import { getLocationLabel, pageLabels, profile } from '../../data/profile';
 import './now.css';
 
@@ -48,10 +49,9 @@ export default function Now() {
     <header className="now-hero">
       <div className="now-status mono"><span className="now-status-dot decor" aria-hidden="true"/><span>NOW · {city} · {profile.currentYear}</span><span className="now-status-index">FILE / 03</span></div>
       <div className="now-hero-heading">
-        <div className="now-hero-main"><p className="now-question display-zh">{pageLabels['/now']}</p><h1 className="display-en">NOW<span>.</span></h1><p className="now-hero-subline mono">WORK / PRACTICE / DIRECTION</p></div>
+        <div className="now-hero-main"><p className="now-question display-zh">{pageLabels['/now']}</p><h1 className="display-en">NOW<span>.</span></h1><div className="now-hero-art-row"><p className="now-hero-subline mono">WORK / PRACTICE / DIRECTION</p><Graffiti variant="terminal" className="now-terminal-graffiti" eager/></div></div>
         <div className="now-hero-note"><span className="now-note-shadow decor" aria-hidden="true"/><Sticker tone="acid" rotate={-3}>{currentJob.period}</Sticker><div className="now-hero-note-paper"><Tape/><p className="mono">CURRENT ROLE</p><p className="display-zh">{currentJob.role}</p><p>{currentJob.company}</p><p>{currentJob.department}</p></div><span className="now-hero-side-note mono decor" aria-hidden="true">→ {city} / {profile.currentYear}</span></div>
       </div>
-      <svg className="now-hero-scribble decor" aria-hidden="true" viewBox="0 0 140 70" fill="none"><path d="m8 36 26 22L55 10l22 40 46-30-8 40M16 68l108-11" stroke="currentColor" strokeWidth="5"/></svg>
       <div className="now-ticker decor" aria-hidden="true"><div className="now-ticker-track">{Array.from({ length: 3 }, (_, index) => <Fragment key={index}><span>{currentJob.department} / {currentJob.role} / {city}</span><span>✳</span></Fragment>)}</div></div>
     </header>
 
@@ -119,7 +119,7 @@ export default function Now() {
     <footer id="now-location" className="now-location page-section" tabIndex={-1}>
       <span className="now-location-tape decor" aria-hidden="true"/>
       <div><p className="mono">BASED IN / {profile.currentYear}</p><h2 className="display-zh">{profile.currentFocus.closing}</h2><p className="now-location-country">{profile.location.country} · {profile.location.province} · {profile.location.city}</p></div>
-      <svg className="now-location-art decor" viewBox="0 0 240 180" fill="none" aria-hidden="true"><path d="M120 13c-42 0-72 29-72 67 0 46 72 91 72 91s72-45 72-91c0-38-30-67-72-67Z" stroke="currentColor" strokeWidth="4"/><circle cx="120" cy="77" r="24" stroke="currentColor" strokeWidth="4"/><path d="m16 27 18 8M214 28l-18 9M10 103h24m176 0h22M58 160l-13 10m138-9 13 10" stroke="currentColor" strokeWidth="4"/></svg>
+      <Graffiti variant="orbit" className="now-location-graffiti"/>
       <span className="now-location-end mono">{profile.name.toUpperCase()} / END OF FILE 03</span>
     </footer>
   </article>;

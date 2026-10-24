@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BigNumber, Panel, SectionTitle, Stamp, Sticker, Tape } from '../../components/ui';
+import { BigNumber, Panel, SectionTitle, Stamp, Tape } from '../../components/ui';
+import { Graffiti } from '../../components/Graffiti';
 import { pageLabels, profile } from '../../data/profile';
 import './work.css';
 
@@ -33,7 +34,7 @@ export default function Work() {
       <header className="work-hero">
         <div className="work-hero-meta"><p className="mono">02 / WORK & RESEARCH</p><Stamp tone="acid">研究与实践</Stamp></div>
         <h1 className="display-zh"><span>{pageLabels['/work']}</span></h1>
-        <div className="work-hero-bottom"><span className="display-en">WORK.</span><div className="work-hero-ticket"><span className="mono">ARCHIVE / 02</span><p className="display-zh">学术 × 产业</p><span className="mono">RESEARCH / PRACTICE</span></div><svg className="work-hero-mark decor" aria-hidden="true" viewBox="0 0 160 80"><path d="M7 28c40-24 107-11 114 10 7 20-30 32-54 16-22-15 16-31 77-27m-18-15 21 15-23 18" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+        <div className="work-hero-bottom"><span className="display-en">WORK.</span><Graffiti variant="orbit" className="work-hero-doodle" eager/><div className="work-hero-ticket"><span className="mono">ARCHIVE / 02</span><p className="display-zh">学术 × 产业</p><span className="mono">RESEARCH / PRACTICE</span></div></div>
         <div className="work-hero-registration decor" aria-hidden="true"><span>+</span><span>02</span><span>+</span></div>
       </header>
 
@@ -58,7 +59,7 @@ export default function Work() {
           </Panel>
 
           <section className="work-case" aria-labelledby="work-estrella">
-            <div className="work-case-heading"><div><p className="mono">RESEARCH / CASE FILE</p><h3 id="work-estrella" tabIndex={-1} className="display-en">{academic.project.name}</h3></div><Sticker tone="magenta" rotate={2}>CASE STUDY</Sticker></div>
+            <div className="work-case-heading"><div><p className="mono">RESEARCH / CASE FILE</p><h3 id="work-estrella" tabIndex={-1} className="display-en">{academic.project.name}</h3></div><Graffiti variant="arrow" className="work-case-doodle"/></div>
             <p className="work-case-organization">{academic.project.organization}</p>
             <Panel className="work-case-summary"><Tape/><p className="mono">项目说明 / PROJECT NOTES</p><p>{academic.project.summary}</p><p>{academic.project.perspective}</p></Panel>
             <ol className="work-case-panels">{academic.project.steps.map((step, index) => <li key={step.title}>

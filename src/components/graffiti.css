@@ -1,0 +1,9 @@
+.graffiti{position:relative;display:block;flex:none;width:clamp(110px,16vw,240px);aspect-ratio:3/2;overflow:hidden;pointer-events:none;user-select:none;line-height:0;isolation:isolate}
+.graffiti>img{position:absolute;inset:0 auto auto 0;width:200%;height:200%;max-width:none;object-fit:contain}
+.graffiti--orbit>img{transform:translateX(-50%)}
+.graffiti--terminal>img{transform:translateY(-50%)}
+.graffiti--arrow>img{transform:translate(-50%,-50%)}
+.graffiti-interlude{display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;max-width:100%;min-width:0;pointer-events:none}
+.graffiti-interlude::before,.graffiti-interlude::after{content:'';height:3px;flex:1;min-width:0;background:currentColor;opacity:.35}
+[data-decor='off'] .graffiti-interlude{display:none}
+@media(prefers-reduced-motion:reduce){.graffiti{rotate:0deg!important}}

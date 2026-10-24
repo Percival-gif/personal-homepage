@@ -1,5 +1,6 @@
 import { useRef, type PointerEvent } from 'react';
 import { Panel, SectionTitle, Stamp, Sticker, Tape } from '../../components/ui';
+import { Graffiti } from '../../components/Graffiti';
 import { getBirthLabel, getLocationLabel, pageLabels, profile } from '../../data/profile';
 import './about.css';
 
@@ -42,7 +43,6 @@ export default function About() {
           <p className="eyebrow mono">01—A / IDENTITY</p>
           <h2 id="about-dossier-title" className="display-zh">从这里<br/>认识我。</h2>
           <span className="about-intro-number decor display-en" aria-hidden="true">01</span>
-          <span className="about-scribble decor" aria-hidden="true"><svg viewBox="0 0 220 80" fill="none"><path d="M6 42C52 5 116 13 153 30c30 14 16 31-23 33-37 2-67-9-52-23 19-18 90-16 131-1m-19-17 22 17-25 9" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
         </div>
         <div className="about-id-stack">
           <span className="about-stack-paper decor" aria-hidden="true" />
@@ -65,7 +65,7 @@ export default function About() {
       </section>
 
       <section className="about-introduction page-section" aria-labelledby="about-introduction-title">
-        <div className="about-introduction-heading"><p className="eyebrow mono">PERSONAL NOTES / ABOUT ME</p><h2 id="about-introduction-title" className="display-zh">{profile.introduction.title}</h2></div>
+        <div className="about-introduction-heading"><p className="eyebrow mono">PERSONAL NOTES / ABOUT ME</p><h2 id="about-introduction-title" className="display-zh">{profile.introduction.title}</h2><Graffiti variant="neural" className="about-neural-art"/></div>
         <Panel className="about-introduction-copy"><Tape/>{profile.introduction.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</Panel>
       </section>
 
@@ -96,7 +96,7 @@ export default function About() {
 
       <section className="about-research page-section" aria-label="课题方向">
         <SectionTitle number="03" eyebrow="RESEARCH INTERESTS">正在追问的方向。</SectionTitle>
-        <div className="about-research-title"><span className="about-quote decor display-en" aria-hidden="true">“</span><p className="display-zh">{profile.research.intro}</p><span className="mono">RESEARCH NOTES / 03</span></div>
+        <div className="about-research-title-wrap"><div className="about-research-title"><span className="about-quote decor display-en" aria-hidden="true">“</span><p className="display-zh">{profile.research.intro}</p><span className="mono">RESEARCH NOTES / 03</span></div><Graffiti variant="arrow" className="about-research-arrow"/></div>
         <Panel className="about-research-overview">{profile.research.overview.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</Panel>
         <div className="about-research-areas">
           {profile.research.areas.map((area, index) => <Panel key={area.title} className={`about-research-area about-research-area-${index + 1}`}>

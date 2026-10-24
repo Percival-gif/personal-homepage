@@ -6,6 +6,7 @@ import type { Door } from '../../data/profile';
 import { usePageTransition } from '../../App';
 import './corridor.css';
 import { ArchiveIndex } from '../../components/ArchiveNavigation';
+import { Graffiti } from '../../components/Graffiti';
 
 function RoomDrawing() {
   return <svg className="corridor-room decor" viewBox="0 0 1440 750" preserveAspectRatio="none" aria-hidden="true">
@@ -68,7 +69,7 @@ export default function Corridor() {
       {doors.map(door => <article key={door.id} className={`corridor-door corridor-door-${door.id}${open === door.id ? ' is-open' : ''}`} style={{ '--door-color': `var(--${door.tone})` } as CSSProperties}>
         <button className="corridor-door-button" type="button" aria-expanded={open === door.id} aria-controls={`inside-${door.id}`} aria-label={`${door.number} ${door.label}`} onMouseEnter={() => { if (!compact) setOpen(door.id); }} onMouseLeave={() => { if (!compact && document.activeElement?.id !== `door-${door.id}`) setOpen(undefined); }} onFocus={() => { if (!compact) setOpen(door.id); }} onBlur={() => { setArmed(undefined); if (!compact) setOpen(undefined); }} onKeyDown={event => handleKey(event, door)} onClick={() => { if (compact) setOpen(open === door.id ? undefined : door.id); else enter(door); }} id={`door-${door.id}`}>
           <span className="corridor-door-reveal" aria-hidden="true"><span className="corridor-door-arrow">↗</span><span className="mono">{door.english}</span></span>
-          <span className="corridor-door-panel"><span className="corridor-door-topline mono"><span>ROOM / {door.id}</span><span>↗</span></span><span className="corridor-door-number display-en">{door.number}</span><DoorDrawing id={door.id}/><span className="corridor-door-sticker display-en">{door.english}</span><span className="corridor-door-handle decor" aria-hidden="true"/><span className="corridor-door-checks decor" aria-hidden="true"/></span>
+          <span className="corridor-door-panel"><span className="corridor-door-topline mono"><span>ROOM / {door.id}</span><span>↗</span></span><span className="corridor-door-number display-en">{door.number}</span>{door.id === 'D' ? <DoorDrawing id={door.id}/> : <Graffiti variant={door.id === 'A' ? 'neural' : door.id === 'B' ? 'terminal' : 'orbit'} className="corridor-generated-art" eager/>}<span className="corridor-door-sticker display-en">{door.english}</span><span className="corridor-door-handle decor" aria-hidden="true"/><span className="corridor-door-checks decor" aria-hidden="true"/></span>
           <span className="corridor-door-label display-zh">{door.label}<span aria-hidden="true">↗</span></span>
         </button>
         <div className="corridor-door-inside" id={`inside-${door.id}`} hidden={compact && open !== door.id}><span className="mono">{door.id === 'D' ? 'A PAGE OF YOUR OWN' : 'STEP INSIDE'}</span>{compact && <button type="button" className="comic-button" onClick={() => enter(door)}>进去 <span aria-hidden="true">→</span></button>}</div>
