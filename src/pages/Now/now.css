@@ -100,3 +100,6 @@
 .now-evidence-grid{grid-template-columns:1fr;gap:39px;padding-right:5px}.now-evidence-card-1,.now-evidence-card-2,.now-evidence-card-3,.now-evidence-card-4{grid-column:1;margin-top:0}.now-evidence-card{padding:25px 22px 30px}.now-evidence-card-4{border-left-width:8px}.now-evidence-card h3{font-size:29px}.now-evidence-card-2 h3{font-size:32px}.now-evidence-meta{margin-bottom:24px;padding-bottom:19px;gap:12px}.now-evidence-meta>.mono{font-size:8px}.now-evidence-meta>.display-en{font-size:37px}.now-check{width:31px;height:31px}.now-skill-body{font-size:17px;line-height:1.95}.now-skill-point{grid-template-columns:13px minmax(0,1fr);gap:8px}.now-skill-point+.now-skill-point{margin-top:18px}.now-point-mark{width:13px}.now-location{gap:26px;padding:34px 22px 24px;border-width:3px}.now-location h2{font-size:58px}.now-location-country{font-size:13px}.now-location-art{width:98px;margin-left:auto}.now-location>.now-location-end{font-size:9px;margin-top:0}
 }
 @media(prefers-reduced-motion:reduce){.now-ticker-track{animation:none!important;transform:none!important}.now-note-shadow,.now-badge-layer,.now-badge-stack-2>.now-badge-layer,.now-location-tape{transform:none!important}}
+
+/* Small notes on the magenta sheet use ink for readable contrast. */
+.now-hero-side-note{color:var(--ink);font-weight:700}
