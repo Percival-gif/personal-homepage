@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "source_commit": "5bedb2b23afbfbc369ce9078930f199bbaa96fa1",
+  "assets": [
+    {
+      "path": "../../public/logo.svg",
+      "role": "approved wordmark"
+    },
+    {
+      "path": "../../public/logo-monochrome.svg",
+      "role": "monochrome wordmark"
+    },
+    {
+      "path": "../../public/favicon.svg",
+      "role": "favicon"
+    },
+    {
+      "path": "../../src/assets/art/graffiti-atlas.webp",
+      "role": "original generated global motif atlas",
+      "layout": {
+        "neural": "top-left",
+        "orbit": "top-right",
+        "terminal": "bottom-left",
+        "arrow": "bottom-right"
+      }
+    },
+    {
+      "path": "../../src/assets/projects/after-you.jpg",
+      "role": "project-specific generated concept art"
+    },
+    {
+      "path": "../../src/assets/projects/bonnie-fridge.jpg",
+      "role": "project-specific generated concept art"
+    },
+    {
+      "path": "../../src/assets/projects/transfloat.jpg",
+      "role": "project-specific generated concept art"
+    },
+    {
+      "path": "../../src/assets/fonts/anton-latin.woff2",
+      "license": "../../src/assets/fonts/Anton-LICENSE",
+      "role": "latin font subset / SIL OFL 1.1"
+    },
+    {
+      "path": "../../src/assets/fonts/smiley-subset.woff2",
+      "license": "../../src/assets/fonts/Smiley-LICENSE",
+      "role": "Chinese font subset / SIL OFL 1.1"
+    }
+  ],
+  "excluded": [
+    "personal photograph",
+    "personal anime portrait",
+    "private diary",
+    "account credentials"
+  ],
+  "notes": "Assets remain in their canonical repository paths. This is an index, not a declaration that every existing asset may be repurposed as generic product content."
+}
