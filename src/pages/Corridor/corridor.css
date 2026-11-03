@@ -98,3 +98,26 @@
   .corridor-wall-type{top:7%;font-size:13vw}
 }
 @media(prefers-reduced-motion:reduce){.corridor-end-emblem,.corridor-door-button{transition:none}}
+
+/* Successive cross-sections expand from the vanishing point, behind stable doors. */
+.corridor-travel-frame { transform-box: view-box; transform-origin: 720px 357px; animation: corridor-forward 12s cubic-bezier(.55,0,.85,.4) infinite; }
+.corridor-travel path { vector-effect: non-scaling-stroke; stroke-width: 1; }
+.corridor-travel .travel-frame { stroke: var(--paper); stroke-opacity: .32; }
+.corridor-travel .travel-left { stroke: var(--blue); stroke-width: 2; }
+.corridor-travel .travel-right { stroke: var(--magenta); stroke-width: 2; }
+.corridor-travel .travel-light { stroke: var(--paper); stroke-width: 2; stroke-opacity: .65; }
+.corridor-travel .travel-floor { stroke: var(--acid); stroke-width: 2; stroke-opacity: .65; }
+@keyframes corridor-forward {
+  0% { transform: scale(.075); opacity: 0; }
+  12% { opacity: .75; }
+  78% { opacity: .75; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+.corridor-page[data-motion="paused"] .corridor-travel-frame { animation-play-state: paused; }
+.corridor-page[data-layout="list"] .corridor-travel,
+.corridor-page[data-layout="list"] .corridor-motion-button { display: none; }
+[data-decor="off"] .corridor-travel-frame { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .corridor-travel, .corridor-motion-button { display: none !important; }
+}
+@media (max-width: 900px) { .corridor-tools { gap: 6px; } .corridor-motion-button { padding: 8px; } }
