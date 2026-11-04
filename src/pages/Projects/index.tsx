@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { projects } from '../../data/projects';
 import type { CreativeProject } from '../../data/projects';
 import './projects.css';
+import { CaseJourney } from '../../components/CaseJourney';
 
 function ProjectCard({ project, main = false }: { project: CreativeProject; main?: boolean }) {
   return <article className={`creative-card creative-card-${project.slug}${main ? ' creative-card-main' : ''}`}>
@@ -29,7 +30,8 @@ export default function Projects() {
   return <article className={`creative-page creative-detail creative-detail-${project.slug}`}>
     <header className="creative-detail-heading"><Link className="creative-back mono" to="/projects">← 创作展厅 / ALL WORKS</Link><div className="creative-detail-meta mono"><span>WORK / {project.number}</span><span>{project.category} · {project.status}</span></div><h1 className="display-en">{project.name}<span className="display-zh">{project.subtitle}</span></h1><p className="creative-detail-question display-zh">{project.question}</p></header>
     <div className="creative-detail-layout"><figure className="creative-detail-figure"><img src={project.image} alt={project.imageAlt} width={project.slug === 'after-you' ? 1122 : 1536} height={project.slug === 'after-you' ? 1402 : 1024} decoding="async"/><figcaption className="mono">{project.imageNote}</figcaption></figure><div className="creative-detail-intro"><p className="mono">ABOUT THIS WORK</p><p>{project.summary}</p><ul className="creative-detail-tags">{project.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>{project.repository && <a className="comic-button" href={project.repository} target="_blank" rel="noreferrer">查看项目源码 ↗</a>}</div></div>
-    <div className="creative-detail-reading"><aside className="creative-margin mono"><span>WORK NOTES</span><span className="display-en decor" aria-hidden="true">{project.number}</span></aside><div>{project.sections.map((section, index) => <section className="creative-prose-section" key={section.title}><p className="mono">0{index + 1} /</p><h2 className="display-zh">{section.title}</h2>{section.paragraphs.map(text => <p key={text}>{text}</p>)}</section>)}</div></div>
+    <CaseJourney key={project.slug} project={project}/>
+    <div className="creative-detail-reading"><aside className="creative-margin mono"><span>WORK NOTES</span><span className="display-en decor" aria-hidden="true">{project.number}</span></aside><div>{project.sections.map((section, index) => <details className="creative-prose-section" key={section.title}><summary><span className="mono">0{index + 1}</span><h2 className="display-zh">{section.title}</h2></summary>{section.paragraphs.map(text => <p key={text}>{text}</p>)}</details>)}</div></div>
     <footer className="creative-next"><Link to="/projects">返回展厅 ↗</Link><Link to={`/projects/${next.slug}`}><span className="mono">NEXT WORK</span><strong className="display-en">{next.name}</strong><span aria-hidden="true">↗</span></Link></footer>
   </article>;
 }

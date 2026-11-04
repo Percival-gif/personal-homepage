@@ -68,3 +68,5 @@
  .work-case-panels{grid-template-columns:1fr}.work-case-panels>li,.work-case-panels>li:first-child,.work-case-panels>li:last-child{grid-column:1;border-right:0;padding:24px 22px 30px}
  .work-frame-top{min-height:70px}.work-figure-number{font-size:70px}.work-contents>a{padding:12px 0}
 }
+
+.work-case-overview{display:grid;gap:0;margin:32px 0;border:3px solid var(--ink);background:var(--paper);color:var(--ink)}.work-case-overview>div{position:relative;padding:24px 26px}.work-case-overview>div+div{border-top:2px solid var(--ink)}.work-case-overview>div:nth-child(2){background:var(--acid)}.work-case-overview .mono{font-size:11px}.work-case-overview h4{font-size:28px;line-height:1.3;margin:14px 0}.work-case-overview p{font-size:16px;line-height:1.9}

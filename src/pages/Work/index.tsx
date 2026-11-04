@@ -63,7 +63,12 @@ export default function Work() {
           <section className="work-case" aria-labelledby="work-estrella">
             <div className="work-case-heading"><div><p className="mono">RESEARCH / CASE FILE</p><h3 id="work-estrella" tabIndex={-1} className="display-en">{academic.project.name}</h3></div><Graffiti variant="arrow" className="work-case-doodle"/></div>
             <p className="work-case-organization">{academic.project.organization}</p>
-            <Panel className="work-case-summary"><Tape/><p className="mono">项目说明 / PROJECT NOTES</p><p>{academic.project.summary}</p><p>{academic.project.perspective}</p></Panel>
+            <div className="work-case-overview" aria-label="Estrella 项目概览">
+              <div><span className="mono">01 / 关注的问题</span><h4 className="display-zh">训练，如何走向应用？</h4><p>{academic.project.perspective}</p></div>
+              <div><span className="mono">02 / 我的参与</span><h4 className="display-zh">预训练与权重分析</h4><p>{academic.project.summary}</p></div>
+              <div><span className="mono">03 / 落地方向</span><h4 className="display-zh">让研究接入项目</h4><p>{academic.project.steps[5].body}</p></div>
+            </div>
+
             <ol className="work-case-panels">{academic.project.steps.map((step, index) => <li key={step.title}>
               <div className="work-frame-top"><span className="mono">FIG. / 0{index + 1}</span><span className="work-figure-number decor display-en" aria-hidden="true">0{index + 1}</span><span className="work-frame-arrow decor" aria-hidden="true">↗</span></div>
               <h4 className="display-zh">{step.title}</h4><p>{step.body}</p>

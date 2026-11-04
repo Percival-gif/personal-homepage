@@ -6,6 +6,7 @@ import type { Door } from '../../data/profile';
 import { usePageTransition } from '../../App';
 import './corridor.css';
 import { ArchiveIndex } from '../../components/ArchiveNavigation';
+import { FeaturedExhibit } from '../../components/FeaturedExhibit';
 import { Graffiti } from '../../components/Graffiti';
 
 function RoomDrawing() {
@@ -75,7 +76,7 @@ export default function Corridor() {
   const toggleDecor = () => { document.documentElement.dataset.decor = decor ? 'off' : 'on'; setDecor(!decor); };
   return <section className="corridor-page" data-layout={compact ? 'list' : 'space'} data-motion={motionPaused ? 'paused' : 'running'} data-active-room={open ?? ''} aria-labelledby="corridor-title">
     <header className="corridor-masthead"><Link className="corridor-home display-en" to="/" aria-label="回到起始页">{profile.name.toUpperCase()}<span className="mono">PERSONAL<br/>ARCHIVE</span></Link><span className="corridor-system mono" aria-hidden="true">〔 EXPLORE / 01—04 〕</span><div className="corridor-tools"><button type="button" className="corridor-motion-button corridor-decor-button mono" aria-pressed={motionPaused} onClick={() => setMotionPaused(!motionPaused)}>{motionPaused ? '继续前行' : '暂停前行'}</button><div className="corridor-view-switch mono" role="group" aria-label="走廊显示方式"><button type="button" aria-pressed={!compact} onClick={() => changeLayout(false)}>走廊</button><button type="button" aria-pressed={compact} onClick={() => changeLayout(true)}>列表</button></div><button type="button" className="corridor-decor-button mono" aria-pressed={!decor} onClick={toggleDecor}>{decor ? '装饰 ON' : '装饰 OFF'}</button></div></header>
-    <div className="corridor-intro"><div><p className="mono">EXHIBITION INDEX / PICK A DOOR.</p><h1 className="display-zh" id="corridor-title">选一扇<span>门。</span><svg className="corridor-title-mark decor" viewBox="0 0 100 60" aria-hidden="true"><path d="m5 28 15 21 23-40 10 36 32-31-6 34M12 55l77-7" fill="none" stroke="currentColor" strokeWidth="5"/></svg></h1></div><p className="corridor-instructions">{compact ? '四间展厅，四种观看方式。' : '沿着线条，进入我的世界。'}<span className="mono">{compact ? 'TAP TO OPEN / TAP TO ENTER' : 'TAB → ENTER → ENTER'}</span></p></div>
+    <div className="corridor-intro"><div><p className="mono">EXHIBITION INDEX / PICK A DOOR.</p><h1 className="display-zh" id="corridor-title">选一扇<span>门。</span><svg className="corridor-title-mark decor" viewBox="0 0 100 60" aria-hidden="true"><path d="m5 28 15 21 23-40 10 36 32-31-6 34M12 55l77-7" fill="none" stroke="currentColor" strokeWidth="5"/></svg></h1></div><FeaturedExhibit/></div>
     <div className="corridor-scene" aria-label="四扇可进入的门与四扇远处装饰门">
       <RoomDrawing/>
       <div className="corridor-wall-type corridor-wall-type-left decor display-en" aria-hidden="true">OPEN</div>

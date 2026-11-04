@@ -28,3 +28,16 @@ export function ArchiveIndex({ currentPath, dark = false }: { currentPath?: stri
     </Link>)}</div><div className="archive-private-link"><span>另一处书写空间 · 仅保存在当前浏览器</span><Link to="/diary">私人笔记本 ↗</Link></div>
   </section>;
 }
+
+const readingNext: Record<string, { path: string; title: string; detail: string; related: string; relatedTitle: string }> = {
+  '/about': { path: '/work', title: '研究与实践', detail: '从经历，走向具体做过的事。', related: '/notes/how-i-work', relatedTitle: '延伸阅读：先理解问题，再选择方法' },
+  '/work': { path: '/projects', title: '走进创作展厅', detail: '故事、生活与工具，看看另一面的创作。', related: '/notes/research-and-evidence', relatedTitle: '延伸阅读：理解结论的边界' },
+  '/now': { path: '/notes', title: '打开思考笔记', detail: '留下一些工作过程中的观察与方法。', related: '/projects/transfloat', relatedTitle: '相关作品：TransFloat 桌面翻译' },
+  '/notes': { path: '/projects', title: '从思考到作品', detail: '看看这些想法如何进入具体的创作。', related: '/now', relatedTitle: '也看看：我现在在做什么' },
+  '/projects': { path: '/projects/after-you', title: 'After You · 在你之后', detail: '从一场关于记忆的重逢开始。', related: '/work', relatedTitle: '也看看：研究与实践' },
+};
+export function ReadingNext({ currentPath }: { currentPath: string }) {
+  const next = readingNext[currentPath];
+  if (!next) return null;
+  return <nav className="reading-next" aria-label="继续探索"><div><p className="mono">NEXT ROOM / 下一站</p><Link className="reading-next-main display-zh" to={next.path}>{next.title}<span aria-hidden="true">↗</span></Link><p>{next.detail}</p></div><div className="reading-next-links"><Link to={next.related}>{next.relatedTitle} ↗</Link><Link to="/corridor">回到走廊，选择其他章节</Link><Link to="/diary">私人笔记本 · 保存在当前浏览器</Link></div></nav>;
+}
